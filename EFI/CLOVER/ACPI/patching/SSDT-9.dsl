@@ -49,7 +49,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (_SB_.PCI0.RP05.PEGP.GC6O, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0.RP05.PEGP.NGC6, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PCI0.RP05.TDGC, IntObj)    // (from opcode)
-    External (_SB_.PCI0.RP05.TGPC, IntObj)    // (from opcode)
+    //External (_SB_.PCI0.RP05.TGPC, IntObj)    // (from opcode)
     External (_SB_.PCI0.SGPO, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PR00._PSS, MethodObj)    // 0 Arguments (from opcode)
     External (DID1, UnknownObj)    // (from opcode)
@@ -115,10 +115,9 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
 
         Name (TDGC, Zero)
         Name (DGCX, Zero)
-        Name (TGPC, Buffer (0x04)
-        {
-             0x00                                           
-        })
+        
+        Name (TGPC, Buffer ( 0x04 ) { 0x00 } )
+              
         PowerResource (PC05, 0x00, 0x0000)
         {
             Name (_STA, One)  // _STA: Status
