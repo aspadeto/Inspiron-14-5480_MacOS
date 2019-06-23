@@ -9,7 +9,7 @@
     - Display FullHD
     - Disco Rígido de 1TB
     - SSD M.2 Nvme Crucial 500GB (instalado após a compra)
-    - Versão da BIOS:
+    - Versão da BIOS: 2.2.0
 
 ## O que funciona?
   * Quase tudo, exceto o que está listado nos tópicos a seguir.
@@ -19,6 +19,8 @@
   * Interface Gráfica Dedicada MX150 não é compatível
 
 ## Pendências
+  * Mover as Kexts para a pastas /Library/Extensions
+
   * Quando o equipamento dorme as portas USB desligam e não voltam.
 
   * Conferir plug do áudio e se esse patch é necessário
@@ -44,6 +46,42 @@
   Caso você tenha problemas ou deseje saber como tudo isso foi feito siga para o próximo capítulo.
 
 # 3. CONFIGURAÇÃO
+
+## Kexts utilizados
+
+  * **Lilu.kext**
+
+    Necessária para realizar o patch de várias funcionalidades necessárias para o funcionamento do Mac OS num PC comum.
+    https://github.com/acidanthera/Lilu/releases
+
+  * **VirtualSMC.kext, SMCBatteryManager.kext, SMCLightSensor.kext, SMCProcessor.kext, SMCSuperIO.kext**
+
+    Necessária para emulação de várias funções de baixo nível do Mac OS nos equipamentos Intel. Substitui a FakeSMC.kext. Necessitada da Lilu.kext.
+    https://github.com/acidanthera/VirtualSMC
+
+  * **AppleALC**
+
+    Para o funcionamento da interface de áudio. Depende da Lilu.kext.
+    https://github.com/acidanthera/AppleALC/releases
+
+  * **WhateverGreen.kext**
+
+    Para o funcionamento da interface gráfica integrada Intel UHD 620. Depende da Lilu.kext.
+    https://github.com/acidanthera/WhateverGreen/releases
+
+  * **RealtekRTL8100.kext**
+
+    Para a interface de rede Realtek.
+    https://github.com/alexandred/VoodooI2C
+
+  * **VoodooI2C.kext e VoodooI2CHID.kext**
+
+    Para funcionamento do trackpad (com gestos)
+    https://github.com/alexandred/VoodooI2C
+
+  * **VoodooPS2Controller.kext**
+
+    Para funcionamento do teclado.
 
 ## PATCHES DSDT E SSDT
 
@@ -118,13 +156,21 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
   Pronto, a correção básica foi feita, agora podemos passar para o próximo passo.
 
-### Faça cópias das versões intermediárias
+### Backup dos arquivos DSDT SSDT para cada alteração abaixo
 
   Uma boa estratégia é ir fazendo cópias dos arquivos que estão sendo alterados,
   isso vai facilitar o processo caso seja necessário repetir ou alterar alguma etapa.
   Assim você não precisar começar do zero.
 
-### Configuração do Trackpad com Gestos
+### Desabilitando a Interface Gráfica Dedicada MX150
+
+  Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho. Para isso foi adicionado o patch SSDT-DisableDGPU.aml em EFI/CLOVER/ACPI/patched.
+
+### Desabilitando a verificação de Trackpad PS2 do VooodooPS2Controller
+
+  Como esse equipamento não possui trackpad PS2 foi adicionada o patch SSDT-DisableTrackpadProbe.aml em EFI/CLOVER/ACPI/patched.
+
+### Configuração do Trackpad com Gestos com o VoodooI2C
 
   Será utilizado o VoodooI2C para funcionamento do TrackPad com Gestos, pois o VoodooPS2Controller.kext não funciona, porém, este vai ser necessário para o teclado, conforme veremos a seguir.
 
@@ -161,16 +207,12 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
     * VoodooI2CHID.kext
 
 
-### Configuração do Teclado
 
-  Instalar o VoodooPS2Controller.kext para funcionamento do Teclado na pasta EFI\CLOVER\kexts\other
 
 ### Configuração da Interface Gráfica Integrada Intel UHD 620
 
 
-### Desabilitando a Interface Gráfica Dedicada MX150
 
-Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho.
 
 
 # 4. TESTES FINAIS
