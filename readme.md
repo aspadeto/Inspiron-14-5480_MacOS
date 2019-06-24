@@ -9,13 +9,20 @@
     - Display FullHD
     - Disco Rígido de 1TB
     - SSD M.2 Nvme Crucial 500GB (instalado após a compra)
-    - Versão da BIOS: 2.2.0
+    - BIOS versão: 2.2.0
+    - Áudio Realtek ALC236
+    - Interface de Rede Sem Fio Intel Wireless AC9462
+    - Interface de Rede Ethernet Realtek RTL810xE FE
+  - Mac OS Mojave 10.14.5
+  - Windows 10 64bits
+  - Os dois SOs estão instalados no mesmo disco.
+  - Clover v2.4k r4961
 
 ## O que funciona?
   * Quase tudo, exceto o que está listado nos tópicos a seguir.
 
 ## Incompatibilidades
-  * Interface de Rede Wifi e Bluetooth (Intel XXX) não compatível
+  * Interface de Rede Wifi e Bluetooth Intel AC9462 não compatível
   * Interface Gráfica Dedicada MX150 não é compatível
 
 ## Pendências
@@ -31,19 +38,68 @@
 
 # 2. INSTALAÇÃO
 
+## Configuração da BIOS
+
+- "VT-d" (virtualization for directed i/o) should be disabled if possible (the config.plist includes dart=0 in case you can't do this)
+- "DEP" (data execution prevention) should be enabled for OS X
+- "secure boot " should be disabled
+- "legacy boot" optional (recommend enabled, but boot UEFI if you have it)
+- "CSM" (compatibility support module) enabled or disabled (varies) (recommend enabled, but boot UEFI)
+- "fast boot" (if available) should be disabled.
+- "boot from USB" or "boot from external" enabled
+- SATA mode (if available) should be AHCI
+- TPM should be disabled
+
 ## Criando o Disco de Instalação
 
-  TODO
+Tutorial completo (em inglês) aqui.
+https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/
 
-## Instalando
+### Preparando a mídia,
 
-  Se o instalador não iniciar utilize o config-7mb.plist no CLOVER
+  Faça download do Mojave na loja da Apple (se ainda não fez), após o download cancele a instalação forçando o fechamento.
+
+  Então inicie um Terminal e execute o comando.
+
+  ```
+  sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmedia" --volume  /Volumes/install_osx --nointeraction
+  ```
+  renomeie o disco para um nome mais acessível
+
+  ```
+  sudo diskutil rename "Install macOS Mojave" install_osx
+  ```
+
+## Clover
+
+Considerando os arquivos e pastas disponíveis nesse repositório, copie as pastas EFI/Boot e  EFI/CLOVER para a pasta EFI da partição EFI da mídia de instalação.
+
+Você pode fazer download do CLOVER mais atual e instalá-lo na partição EFI, fica a seu critério, de qualquer forma é ideal que se faça esse procedimento de atualização na partição EFI do sistema de destino, mas faremos isso no final.
+
+## Pós Instalação
+
+### Update do Clover
 
 
+### Ajuste do horário no Windows
 
-  Bom, aqui termina o processo de instalação, a partir daqui você deve ter um sistema pronto para utilizar.
+https://www.tonymacx86.com/threads/fix-incorrect-time-in-windows-osx-dual-boot.133719/
 
-  Caso você tenha problemas ou deseje saber como tudo isso foi feito siga para o próximo capítulo.
+### Configurando SMBIOS
+
+Open config.plist from attached CLOVER folder in CloverConfigurator
+Clover Configurator (Global Edition)
+and generate a new SMbios (use drop up/down menu just under the big ?)
+
+
+### Esconder opções desnecessárias no CLOVER
+  Pegar vídeo da russa, que não é russa
+
+### Aplicando Temas ao Clover
+
+Baixe o CloverThemeManager e modifique o tema do bootloader.
+
+https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManagerApp/Updates/
 
 # 3. CONFIGURAÇÃO
 
@@ -156,6 +212,20 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
   Pronto, a correção básica foi feita, agora podemos passar para o próximo passo.
 
+  3. Compile, aplique e reinicie o computador
+
+    1. Compilando
+
+      ```
+      iasl DSDT.dsl
+      ```
+
+      Observe que o comando deve retornar "Compilation complete. 0 Errors".
+
+    2. Copie o arquivo resultante para a pasta EFI/CLOVER/ACPI/patched
+
+    3. Reinicie o equipamento
+
 ### Backup dos arquivos DSDT SSDT para cada alteração abaixo
 
   Uma boa estratégia é ir fazendo cópias dos arquivos que estão sendo alterados,
@@ -165,6 +235,11 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 ### Desabilitando a Interface Gráfica Dedicada MX150
 
   Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho. Para isso foi adicionado o patch SSDT-DisableDGPU.aml em EFI/CLOVER/ACPI/patched.
+
+  VEN 10DE DEV 1D10
+
+  PCIROOT 0, PCI 1C04, PCI 0000
+  ACPI(SB), ACPI(PCI0), RP5, PEGP
 
 ### Desabilitando a verificação de Trackpad PS2 do VooodooPS2Controller
 
@@ -187,37 +262,86 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
     * VoodooI2C-Patches / GPIO Controller Enable [SKL+]
 
-  3. Antes de aplicar o próximo patch é necessário gerar uma versão preliminar do DSDT e copiá-lo para a pasta EFI/CLOVER/ACPI/patched. Após a cópia deve-se reiniciar o equipamento.
+  3. Compile, aplique o DSDT e reinicie o equipamento.
 
-  Para compilar e gerar o arquivo AML resultante deve-se utilizar novamente a ferramenta iasl
-
-  > iasl DSDT.dsl
-
-  Observe que o comando deve retornar "Compilation complete. 0 Errors".
-
-  4. Após reiniciar o laptop, abra o aplicativo IORegistryExplorer e procure pelo dispositivo.
-
-  No modo de visualização IODeviceTree, o dispositivo foi identificado em PCI0 \ I2C0 \ TPD0.
-
-  Tome nota da propriedade IOInterruptSpecifiers = 33 00 00 00 03 00 00 00.
-
-  5. Instale os Kexts do VoodooI2C na pasta EFI/CLOVER/kext/other
+  4. Instale os Kexts do VoodooI2C na pasta EFI/CLOVER/kext/other
 
     * VoodooI2C.kext,
     * VoodooI2CHID.kext
 
+  5. Reinicie o equipamento
 
+    A partir daí o trackpad deve estar 100% funcional.
+    Vá até a configuração do sistema e acesse os painéis de preferências Trackpad e Acessibilidade para realizar os ajustes necessários.
 
+## CONFIGURAÇÕES CLOVER
+
+O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config
 
 ### Configuração da Interface Gráfica Integrada Intel UHD 620
 
+  ```
+  <key>Properties</key>
+  <dict>
+    <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
+    <dict>
+      <key>AAPL,GfxYTile</key>
+      <data>
+      AQAAAA==
+      </data>
+      <key>AAPL,ig-platform-id</key>
+      <data>
+      AACbPg==
+      </data>
+      <key>device-id</key>
+      <data>
+      mz4AAA==
+      </data>
+      <key>disable-external-gpu</key>
+      <data>
+      AQAAAA==
+      </data>
+      <key>framebuffer-fbmem</key>
+      <data>
+      AACQAA==
+      </data>
+      <key>framebuffer-patch-enable</key>
+      <data>
+      AQAAAA==
+      </data>
+      <key>framebuffer-stolenmem</key>
+      <data>
+      AAAwAQ==
+      </data>
+      <key>framebuffer-unifiedmem</key>
+      <data>
+      AAAAgA==
+      </data>
+      <key>hda-gfx</key>
+      <string>onboard-1</string>
+      <key>model</key>
+      <string>UHD Graphics 620 (Whiskey Lake)</string>
+    </dict>
+  </dict>
+  ```
 
+### Configuração do Áudio
 
+  Device \ Audio \ Inject = 11
 
+https://github.com/acidanthera/AppleALC/wiki/Supported-codecs
+
+### Boot Arguments
+
+  * dart = 0, detabilita o VT-d apenas para o MacOS caso queira deixar a opção habilitada na BIOS
+  * debug=0x100, evita que o sistema reboot em caso de kernel panic
+  * agdpmod=vit9696, agdpmod=vit9696 disables check for board-id (TODO: TESTAR)
 
 # 4. TESTES FINAIS
 
 ## Verificar se o powermanagement está funcionando?
+
+  https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/
 
   https://software.intel.com/en-us/articles/intel-power-gadget
 
@@ -229,10 +353,10 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
 
 
-# 5. PÓS INSTALAÇÃO
+# Referências
 
-## Esconder opções desnecessárias no CLOVER
-Pegar vídeo da russa.
+https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
+
 
 
 
