@@ -30,11 +30,7 @@
 
   * Quando o equipamento dorme as portas USB desligam e não voltam.
 
-  * Conferir plug do áudio e se esse patch é necessário
-    com.apple.driver.AppleMikeyDriver (MikeyDriver Patch Assertions)
-
-  * Conferir no AppleALC se o patch abaixo é necessário
-    com.apple.driver.AppleHDA (AppleHDA Patch Assertions)
+  * Ajustar a questão das portas USB para retirar o
 
 # 2. INSTALAÇÃO
 
@@ -138,6 +134,11 @@ https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManager
   * **VoodooPS2Controller.kext**
 
     Para funcionamento do teclado.
+
+  * **USBInjectAll.kext**
+
+    Para funcionamento das portas USB.
+
 
 ## PATCHES DSDT E SSDT
 
@@ -351,25 +352,19 @@ https://github.com/acidanthera/AppleALC/wiki/Supported-codecs
 
   * Geekbench 4 PC:
 
-
-
 # Referências
 
+* Configurações parecidas
 https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
 
+* AppleGraphicsDevicePolicy, Prevent AGDP from Loading
+https://www.elitemacx86.com/threads/fix-black-screen-issue-with-macpro-6-1-and-imac-15-17-system-definition-nvidia-amd.212/
 
+* AppleMikeyDriver
+https://olarila.com/forum/viewtopic.php?f=50&t=6254&p=56325&hilit=applemikeydriver#p56325
 
+* com.apple.driver.AppleAHCIPort (External icons patch)
 
-
-
-
-
-
-
-** CONFERÊNCIA DO CLOVER
-
-*** com.apple.driver.AppleAHCIPort (External icons patch)
-Tem que ter
 
 *** com.apple.driver.AppleGraphicsDevicePolicy (Prevent AGDP from loading)
 Talvez seja necessário por conta de ter a interface gráfica dedicada
