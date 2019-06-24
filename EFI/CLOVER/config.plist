@@ -123,9 +123,9 @@
 				<key>DeleteUnused</key>
 				<true/>
 				<key>FixHPET</key>
-				<true/>
+				<false/>
 				<key>FixIPIC</key>
-				<true/>
+				<false/>
 				<key>FixMutex</key>
 				<true/>
 				<key>FixRTC</key>
@@ -133,7 +133,7 @@
 				<key>FixRegions</key>
 				<true/>
 				<key>FixShutdown</key>
-				<true/>
+				<false/>
 				<key>FixTMR</key>
 				<true/>
 			</dict>
@@ -143,16 +143,16 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>GFX0 to IGPU</string>
+					<string>ECDV to EC</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>
-					R0ZYMA==
+					RUNEVg==
 					</data>
 					<key>Replace</key>
 					<data>
-					SUdQVQ==
+					RUNfXw==
 					</data>
 				</dict>
 				<dict>
@@ -167,20 +167,6 @@
 					<key>Replace</key>
 					<data>
 					SERFRg==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>HECI to IMEI</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>
-					SEVDSQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					SU1FSQ==
 					</data>
 				</dict>
 				<dict>
@@ -213,6 +199,20 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
+					<string>Fix bug SKL+</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					oAqTU1RBUwE=
+					</data>
+					<key>Replace</key>
+					<data>
+					oAqRCv8L//8=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
 					<string>H_EC to EC</string>
 					<key>Disabled</key>
 					<true/>
@@ -241,30 +241,30 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>ECDV to EC</string>
+					<string>HECI to IMEI</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
 					<data>
-					RUNEVg==
+					SEVDSQ==
 					</data>
 					<key>Replace</key>
 					<data>
-					RUNfXw==
+					SU1FSQ==
 					</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>Fix bug SKL+</string>
+					<string>GFX0 to IGPU</string>
 					<key>Disabled</key>
-					<false/>
+					<true/>
 					<key>Find</key>
 					<data>
-					oAqTU1RBUwE=
+					R0ZYMA==
 					</data>
 					<key>Replace</key>
 					<data>
-					oAqRCv8L//8=
+					SUdQVQ==
 					</data>
 				</dict>
 			</array>
@@ -350,7 +350,7 @@
 		<key>#XMPDetection</key>
 		<string>-1</string>
 		<key>Arguments</key>
-		<string>dart=0 nv_disable=1 debug=0x100 agdpmod=vit9696</string>
+		<string>dart=0 debug=0x100 agdpmod=vit9696 nv_disable=1 -v</string>
 		<key>CustomLogo</key>
 		<false/>
 		<key>Debug</key>
@@ -614,14 +614,8 @@
 		<true/>
 		<key>Audio</key>
 		<dict>
-			<key>#Inject</key>
-			<string>0x0887</string>
-			<key>AFGLowPowerState</key>
-			<true/>
 			<key>Inject</key>
-			<integer>3</integer>
-			<key>ResetHDA</key>
-			<true/>
+			<integer>15</integer>
 		</dict>
 		<key>LANInjection</key>
 		<false/>
@@ -801,17 +795,32 @@
 		</dict>
 		<key>#TextOnly</key>
 		<false/>
+		<key>EmbeddedThemeType</key>
+		<string>Daytime</string>
 		<key>Mouse</key>
 		<dict>
 			<key>DoubleClick</key>
 			<integer>500</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 			<key>Speed</key>
 			<integer>8</integer>
 		</dict>
+		<key>Scan</key>
+		<dict>
+			<key>Entries</key>
+			<true/>
+			<key>Legacy</key>
+			<false/>
+			<key>Linux</key>
+			<false/>
+			<key>Tool</key>
+			<false/>
+		</dict>
 		<key>Theme</key>
-		<string>clover-theme-minimal-dark</string>
+		<string>Mojave</string>
+		<key>Timezone</key>
+		<integer>4</integer>
 	</dict>
 	<key>Graphics</key>
 	<dict>
@@ -1000,7 +1009,7 @@
 				<key>Comment</key>
 				<string>Kernel Lapic Fix</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				ngAAdA6L
@@ -1021,13 +1030,13 @@
 				<key>Comment</key>
 				<string>External icons patch</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				RXh0ZXJuYWw=
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.11.x,10.12.x,10.13.x,10.14.x,10.15.x</string>
 				<key>Name</key>
@@ -1041,13 +1050,13 @@
 				<key>Comment</key>
 				<string>MikeyDriver Patch Assertions</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				U291bmQgYXNzZXJ0aW9uIA==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.11.x,10.12.x,10.13.x,10.14.x,10.15.x</string>
 				<key>Name</key>
@@ -1061,13 +1070,13 @@
 				<key>Comment</key>
 				<string>Prevent AGDP from loading</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				ugUAAAA=
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.11.x,10.12.x,10.13.x,10.14.x,10.15.x</string>
 				<key>Name</key>
@@ -1121,13 +1130,13 @@
 				<key>Comment</key>
 				<string>AppleHDA Patch Assertions</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				U291bmQgYXNzZXJ0aW9uIA==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.11.x,10.12.x,10.13.x,10.14.x,10.15.x</string>
 				<key>Name</key>
@@ -1141,13 +1150,13 @@
 				<key>Comment</key>
 				<string>USB port limit patch</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g72M/v//EA==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.11.x</string>
 				<key>Name</key>
@@ -1161,13 +1170,13 @@
 				<key>Comment</key>
 				<string>USB port limit patch</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g710////EA==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.12.x</string>
 				<key>Name</key>
@@ -1181,13 +1190,13 @@
 				<key>Comment</key>
 				<string>USB port limit patch by PMHeart</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g32IDw+DpwQAAA==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.13.6</string>
 				<key>Name</key>
@@ -1201,13 +1210,13 @@
 				<key>Comment</key>
 				<string>USB port limit patch #1 10.14.x modify by DalianSky(credit ydeng)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/sPDw==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.14.x</string>
 				<key>Name</key>
@@ -1221,13 +1230,13 @@
 				<key>Comment</key>
 				<string>USB port limit patch #2 10.14.x modify by DalianSky(credit PMHeart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g+MP0w==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.14.x</string>
 				<key>Name</key>
@@ -1241,13 +1250,13 @@
 				<key>Comment</key>
 				<string>USB Port limit patch #3 10.14.x modify by DalianSky(credits PMheart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/sPDw==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.14.x</string>
 				<key>Name</key>
@@ -1261,13 +1270,13 @@
 				<key>Comment</key>
 				<string>USB Port limit patch #4 10.14.x modify by DalianSky(credits PMheart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/8PDw==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.14.x</string>
 				<key>Name</key>
@@ -1281,13 +1290,13 @@
 				<key>Comment</key>
 				<string>USB Port limit patch #1(credits PMheart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/sPDw==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.15.x</string>
 				<key>Name</key>
@@ -1301,13 +1310,13 @@
 				<key>Comment</key>
 				<string>USB Port limit patch #2(credits PMheart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/kPDw==
 				</data>
 				<key>InfoPlistPatch</key>
-				<false/>
+				<true/>
 				<key>MatchOS</key>
 				<string>10.15.x</string>
 				<key>Name</key>
@@ -1473,6 +1482,11 @@
 		<string>Part Component</string>
 		<key>Manufacturer</key>
 		<string>Apple Inc.</string>
+		<key>Memory</key>
+		<dict>
+			<key>Channels</key>
+			<integer>0</integer>
+		</dict>
 		<key>Mobile</key>
 		<true/>
 		<key>PlatformFeature</key>
@@ -1495,7 +1509,7 @@
 		<key>#NvidiaWeb</key>
 		<false/>
 		<key>InjectKexts</key>
-		<string>Yes</string>
+		<string>Detect</string>
 		<key>InjectSystemID</key>
 		<true/>
 	</dict>
