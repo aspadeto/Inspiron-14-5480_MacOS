@@ -32,6 +32,13 @@
 
   * Ajustar a questão das portas USB para retirar o
 
+  * Verificar necessidade das Kexts
+    - SATA-unsupported, e
+      - https://www.tonymacx86.com/threads/guide-dell-inspiron-7560-mojave-installation.261827/
+    - ACPIBatteryManager
+      - https://github.com/RehabMan/OS-X-ACPI-Battery-Driver
+      - https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/
+
 # 2. INSTALAÇÃO
 
 ## Configuração da BIOS
@@ -141,6 +148,8 @@ https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManager
 
 
 ## PATCHES DSDT E SSDT
+
+https://sourceforge.net/p/maciasl/wiki/Home/
 
 ### Como fazer patch do DSDT / SSDT
 
