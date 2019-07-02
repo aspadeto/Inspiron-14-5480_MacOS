@@ -1,9 +1,6 @@
 #!/bin/sh
 
 # Obtido em https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/
-# 
-#
-#
 #
 
 
