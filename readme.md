@@ -364,6 +364,7 @@ https://www.elitemacx86.com/threads/fix-black-screen-issue-with-macpro-6-1-and-i
 https://olarila.com/forum/viewtopic.php?f=50&t=6254&p=56325&hilit=applemikeydriver#p56325
 
 * com.apple.driver.AppleAHCIPort (External icons patch)
+https://hackintosher.com/forums/thread/nvme-shows-as-external.339/
 
 
 *** com.apple.driver.AppleGraphicsDevicePolicy (Prevent AGDP from loading)
