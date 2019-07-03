@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-8.aml, Sat Jun 22 19:05:47 2019
+ * Disassembly of SSDT-8.aml, Mon Jul  1 23:15:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -49,7 +49,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (_SB_.PCI0.RP05.PEGP.GC6O, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0.RP05.PEGP.NGC6, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PCI0.RP05.TDGC, IntObj)    // (from opcode)
-    External (_SB_.PCI0.RP05.TGPC, IntObj)    // (from opcode)
+    //External (_SB_.PCI0.RP05.TGPC, IntObj)    // (from opcode)
     External (_SB_.PCI0.SGPO, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PR00._PSS, MethodObj)    // 0 Arguments (from opcode)
     External (DID1, UnknownObj)    // (from opcode)
