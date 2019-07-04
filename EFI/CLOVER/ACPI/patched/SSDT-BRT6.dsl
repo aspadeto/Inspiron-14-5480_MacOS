@@ -10,6 +10,9 @@ DefinitionBlock("", "SSDT", 2, "hack", "BRT6", 0)
     External(_SB.PCI0.GFX0, DeviceObj)
     External(_SB.PCI0.LPCB.PS2K, DeviceObj)
     External(_SB.PCI0.GFX0.LCD, DeviceObj)
+    External (RMDT.PUSH, MethodObj)   
+	External (RMDT.P1, MethodObj)
+	External (RMDT.P2, MethodObj)
 
     // Allow IGPU brightness keys to trigger PS/2 codes, which can then control brightness
     Scope(_SB.PCI0.GFX0)
@@ -18,6 +21,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "BRT6", 0)
         {
             If (LEqual (Arg0, One))
             {
+				\RMDT.P1("SSDT-BRT6 Arg0 One")
                 Notify (^LCD, 0x86)    //native code
                 Notify (^^LPCB.PS2K, 0x10)    //ELAN code
                 Notify (^^LPCB.PS2K, 0x0206) // PS2 code
@@ -26,6 +30,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "BRT6", 0)
 
             If (And (Arg0, 0x02))
             {
+				\RMDT.P1("SSDT-BRT6 Arg0 0x02")
                 Notify (^LCD, 0x87)    //native code
                 Notify (^^LPCB.PS2K, 0x20)    //ELAN code
                 Notify (^^LPCB.PS2K, 0x0205) // PS2 code
@@ -35,12 +40,12 @@ DefinitionBlock("", "SSDT", 2, "hack", "BRT6", 0)
     }
 
     // Stub out PEG0/Nvidia discrete graphics brightness function
-    Scope(_SB.PCI0.PEG0.PEGP)
-    {
-        Method (BRT6, 2, NotSerialized)
-        {
-        }
-    }
+    //Scope(_SB.PCI0.PEG0.PEGP)
+    //{
+    //    Method (BRT6, 2, NotSerialized)
+    //    {
+    //    }
+    //}
 
 }
 //EOF
