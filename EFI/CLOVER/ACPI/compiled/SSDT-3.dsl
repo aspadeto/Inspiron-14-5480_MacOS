@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
- * Copyright (c) 2000 - 2018 Intel Corporation
+ * AML/ASL+ Disassembler version 20161210-64(RM)
+ * Copyright (c) 2000 - 2016 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-3.aml, Mon Jul  1 23:15:19 2019
+ * Disassembly of SSDT-3.aml, Wed Jul  3 01:06:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -372,7 +372,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "PtidDevc", 0x00001000)
 
             Method (RPMD, 0, Serialized)
             {
-                Name (MTMP, Buffer (0x1A){})
+                Name (MTMP, Buffer (0x1A) {})
                 Return (MTMP)
             }
 

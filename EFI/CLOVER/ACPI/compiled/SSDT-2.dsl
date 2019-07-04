@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
- * Copyright (c) 2000 - 2018 Intel Corporation
+ * AML/ASL+ Disassembler version 20161210-64(RM)
+ * Copyright (c) 2000 - 2016 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-2.aml, Mon Jul  1 23:15:19 2019
+ * Disassembly of SSDT-2.aml, Wed Jul  3 01:06:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -201,7 +201,7 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Name (PCKG, Package (0x01)
             {
-                Buffer (0x10){}
+                Buffer (0x10) {}
             })
             CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
             Store (One, REV)
@@ -216,7 +216,7 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Name (PCKG, Package (0x01)
             {
-                Buffer (0x10){}
+                Buffer (0x10) {}
             })
             CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
             Store (One, REV)
@@ -380,73 +380,76 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08BC)
+                    ElseIf (LEqual (_T_0, 0x08BC))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, H1TC)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H1TC, Zero))
@@ -461,73 +464,76 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08BC)
+                    ElseIf (LEqual (_T_0, 0x08BC))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (Zero, H1TC)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, H1TC)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H1TC, Zero))
@@ -661,13 +667,16 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x0894)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H2CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H2TC, Zero))
@@ -813,25 +822,28 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H3CN)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H3CN)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H3CN)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H3CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H3TC, Zero))
@@ -846,25 +858,28 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H3VS)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H3VS)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H3VS)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H3VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H3TC, Zero))
@@ -998,15 +1013,18 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x089F)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H4TC)
                         Store (Zero, H4CN)
                         Store (Zero, H4VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H4TC, Zero))
@@ -1021,15 +1039,18 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x089F)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H4TC)
                         Store (Zero, H4CN)
                         Store (Zero, H4VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H4TC, Zero))
@@ -1163,13 +1184,16 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A6)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H5CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H5TC, Zero))
@@ -1184,61 +1208,64 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, H5VS)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, H5VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H5TC, Zero))
@@ -1658,61 +1685,64 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, H8CN)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, H8CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H8TC, Zero))
@@ -1727,61 +1757,64 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, H8VS)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, H8VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H8TC, Zero))
@@ -1915,21 +1948,24 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08BC)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08BC))
                     {
                         Store (One, H9CN)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (One, H9CN)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (One, H9CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (H9TC, Zero))
@@ -2816,73 +2852,76 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08BC)
+                    ElseIf (LEqual (_T_0, 0x08BC))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, S1TC)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S1TC, Zero))
@@ -2897,73 +2936,76 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08BC)
+                    ElseIf (LEqual (_T_0, 0x08BC))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (Zero, S1TC)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, S1TC)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S1TC, Zero))
@@ -2984,13 +3026,16 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x0894)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S2CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S2TC, Zero))
@@ -3023,57 +3068,60 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, S3CN)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, S3CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S3TC, Zero))
@@ -3088,59 +3136,62 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 If (LEqual (S3TC, Zero))
                 {
-                    Switch (\CBID)
+                    While (One)
                     {
-                        Case (0x08A5)
+                        Store (\CBID, _T_0)
+                        If (LEqual (_T_0, 0x08A5))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x0894)
+                        ElseIf (LEqual (_T_0, 0x0894))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x0895)
+                        ElseIf (LEqual (_T_0, 0x0895))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x0896)
+                        ElseIf (LEqual (_T_0, 0x0896))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x089F)
+                        ElseIf (LEqual (_T_0, 0x089F))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x089C)
+                        ElseIf (LEqual (_T_0, 0x089C))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x089D)
+                        ElseIf (LEqual (_T_0, 0x089D))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x089E)
+                        ElseIf (LEqual (_T_0, 0x089E))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x08A7)
+                        ElseIf (LEqual (_T_0, 0x08A7))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x08A8)
+                        ElseIf (LEqual (_T_0, 0x08A8))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x08A9)
+                        ElseIf (LEqual (_T_0, 0x08A9))
                         {
                             Store (Zero, S3VS)
                         }
-                        Case (0x0949)
+                        ElseIf (LEqual (_T_0, 0x0949))
                         {
                             Store (Zero, S3VS)
                         }
 
+                        Break
                     }
 
                     Return (GPLD (S3VS, S3CP))
@@ -3159,14 +3210,17 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x089F)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S4TC)
                         Store (Zero, S4CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S4TC, Zero))
@@ -3181,14 +3235,17 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x089F)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S4TC)
                         Store (Zero, S4VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S4TC, Zero))
@@ -3209,61 +3266,64 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, S5CN)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, S5CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S5TC, Zero))
@@ -3278,63 +3338,66 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 If (LEqual (S5TC, Zero))
                 {
-                    Switch (\CBID)
+                    While (One)
                     {
-                        Case (0x08A5)
+                        Store (\CBID, _T_0)
+                        If (LEqual (_T_0, 0x08A5))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x08A6)
+                        ElseIf (LEqual (_T_0, 0x08A6))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x0894)
+                        ElseIf (LEqual (_T_0, 0x0894))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x0895)
+                        ElseIf (LEqual (_T_0, 0x0895))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x0896)
+                        ElseIf (LEqual (_T_0, 0x0896))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x089F)
+                        ElseIf (LEqual (_T_0, 0x089F))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x089C)
+                        ElseIf (LEqual (_T_0, 0x089C))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x089D)
+                        ElseIf (LEqual (_T_0, 0x089D))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x089E)
+                        ElseIf (LEqual (_T_0, 0x089E))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x08A7)
+                        ElseIf (LEqual (_T_0, 0x08A7))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x08A8)
+                        ElseIf (LEqual (_T_0, 0x08A8))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x08A9)
+                        ElseIf (LEqual (_T_0, 0x08A9))
                         {
                             Store (Zero, S5VS)
                         }
-                        Case (0x0949)
+                        ElseIf (LEqual (_T_0, 0x0949))
                         {
                             Store (Zero, S5VS)
                         }
 
+                        Break
                     }
 
                     Return (GPLD (S5VS, S5CP))
@@ -3353,73 +3416,76 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08A5)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08A5))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08A6)
+                    ElseIf (LEqual (_T_0, 0x08A6))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x0894)
+                    ElseIf (LEqual (_T_0, 0x0894))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x0895)
+                    ElseIf (LEqual (_T_0, 0x0895))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x0896)
+                    ElseIf (LEqual (_T_0, 0x0896))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x089F)
+                    ElseIf (LEqual (_T_0, 0x089F))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x089C)
+                    ElseIf (LEqual (_T_0, 0x089C))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x089D)
+                    ElseIf (LEqual (_T_0, 0x089D))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x089E)
+                    ElseIf (LEqual (_T_0, 0x089E))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08A7)
+                    ElseIf (LEqual (_T_0, 0x08A7))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08A8)
+                    ElseIf (LEqual (_T_0, 0x08A8))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08A9)
+                    ElseIf (LEqual (_T_0, 0x08A9))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08BC)
+                    ElseIf (LEqual (_T_0, 0x08BC))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (Zero, S6CN)
                     }
-                    Case (0x0949)
+                    ElseIf (LEqual (_T_0, 0x0949))
                     {
                         Store (Zero, S6CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S6TC, Zero))
@@ -3434,75 +3500,78 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 If (LEqual (S6TC, Zero))
                 {
-                    Switch (\CBID)
+                    While (One)
                     {
-                        Case (0x08A5)
+                        Store (\CBID, _T_0)
+                        If (LEqual (_T_0, 0x08A5))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08A6)
+                        ElseIf (LEqual (_T_0, 0x08A6))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x0894)
+                        ElseIf (LEqual (_T_0, 0x0894))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x0895)
+                        ElseIf (LEqual (_T_0, 0x0895))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x0896)
+                        ElseIf (LEqual (_T_0, 0x0896))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x089F)
+                        ElseIf (LEqual (_T_0, 0x089F))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x089C)
+                        ElseIf (LEqual (_T_0, 0x089C))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x089D)
+                        ElseIf (LEqual (_T_0, 0x089D))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x089E)
+                        ElseIf (LEqual (_T_0, 0x089E))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08A7)
+                        ElseIf (LEqual (_T_0, 0x08A7))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08A8)
+                        ElseIf (LEqual (_T_0, 0x08A8))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08A9)
+                        ElseIf (LEqual (_T_0, 0x08A9))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08BC)
+                        ElseIf (LEqual (_T_0, 0x08BC))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08BD)
+                        ElseIf (LEqual (_T_0, 0x08BD))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x08C0)
+                        ElseIf (LEqual (_T_0, 0x08C0))
                         {
                             Store (Zero, S6VS)
                         }
-                        Case (0x0949)
+                        ElseIf (LEqual (_T_0, 0x0949))
                         {
                             Store (Zero, S6VS)
                         }
 
+                        Break
                     }
 
                     Return (GPLD (S6VS, S6CP))
@@ -3551,21 +3620,24 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08BC)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08BC))
                     {
                         Store (One, S8CN)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (One, S8CN)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (One, S8CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S8TC, Zero))
@@ -3580,21 +3652,24 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
 
             Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08BC)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08BC))
                     {
                         Store (One, S8VS)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (One, S8VS)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (One, S8VS)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S8TC, Zero))
@@ -3615,21 +3690,24 @@ DefinitionBlock ("", "SSDT", 2, "INTEL", "xh_whld4", 0x00000000)
         {
             Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
-                Switch (\CBID)
+                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (One)
                 {
-                    Case (0x08BC)
+                    Store (\CBID, _T_0)
+                    If (LEqual (_T_0, 0x08BC))
                     {
                         Store (One, S9CN)
                     }
-                    Case (0x08BD)
+                    ElseIf (LEqual (_T_0, 0x08BD))
                     {
                         Store (One, S9CN)
                     }
-                    Case (0x08C0)
+                    ElseIf (LEqual (_T_0, 0x08C0))
                     {
                         Store (One, S9CN)
                     }
 
+                    Break
                 }
 
                 If (LEqual (S9TC, Zero))
