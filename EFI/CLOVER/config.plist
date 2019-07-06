@@ -172,6 +172,20 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
+					<string>change _DSM to XDSM</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					X0RTTQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WERTTQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
 					<string>Fix bug SKL+</string>
 					<key>Disabled</key>
 					<false/>
@@ -182,48 +196,6 @@
 					<key>Replace</key>
 					<data>
 					oAqRCv8L//8=
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>GLAN to GIGE</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>
-					R0xBTg==
-					</data>
-					<key>Replace</key>
-					<data>
-					R0lHRQ==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>HECI to IMEI</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>
-					SEVDSQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					SU1FSQ==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>GFX0 to IGPU</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>
-					R0ZYMA==
-					</data>
-					<key>Replace</key>
-					<data>
-					SUdQVQ==
 					</data>
 				</dict>
 			</array>
@@ -594,6 +566,10 @@
 				<data>
 				AACbPg==
 				</data>
+				<key>DISABLED-framebuffer-con3-alldata</key>
+				<data>
+				AwQKAAAIAACHAQAA
+				</data>
 				<key>device-id</key>
 				<data>
 				mz4AAA==
@@ -606,6 +582,25 @@
 				<data>
 				AQAAAA==
 				</data>
+				<key>framebuffer-con1-alldata</key>
+				<data>
+				AQUJAAAEAACHAQAA
+				</data>
+				<key>framebuffer-con1-enable</key>
+				<data>
+				AQAAAA==
+				</data>
+				<key>framebuffer-con2-alldata</key>
+				<data>
+				AgYJAAAEAACHAQAA
+				</data>
+				<key>framebuffer-con2-enable</key>
+				<data>
+				AQAAAA==
+				</data>
+				<key>framebuffer-con3-enable</key>
+				<data>
+				</data>
 				<key>framebuffer-fbmem</key>
 				<data>
 				AACQAA==
@@ -613,6 +608,10 @@
 				<key>framebuffer-patch-enable</key>
 				<data>
 				AQAAAA==
+				</data>
+				<key>framebuffer-portcount</key>
+				<data>
+				BAAAAA==
 				</data>
 				<key>framebuffer-stolenmem</key>
 				<data>
