@@ -2,7 +2,6 @@
 
 # Baseado no script gen_debug 
 # originalmente escrito por black.dragon74 
-#
 
 diskutil mount EFI
 
