@@ -1,88 +1,109 @@
 # 1. INTRODUÇÃO
 
-  Instalando e utilizando o MacOS Mojave (10.14) em um Dell Inspiron 14 5480.
+  MacOS Mojave (10.14.5) no Dell Inspiron 14 5480.
+  Esse não é bem um guia, apesar de utilizar Hackintoshs desde o Snow Leopard não tenho tanta experiência com hardwares variados, muito menos estou habilitado a tirar dúvidas sobre questões diversas. Esse documento está mais para review.
+
+  Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro, tem boa construção e um ótimo custo/benefício, e, como o resultado da instalação do Mojave foi muito satisfatório, compartilho aqui as configurações aplicadas no equipamento.
 
 ## Especificação do Equipamento
-  - Dell Inspiron 14 5480 A20S
-    - Intel i7-8565U
-    - 8GB RAM
-    - Display FullHD
-    - Disco Rígido de 1TB
-    - SSD M.2 Nvme Crucial 500GB (instalado após a compra)
-    - BIOS versão: 2.2.0
-    - Áudio Realtek ALC236
-    - Interface de Rede Sem Fio Intel Wireless AC9462
-    - Interface de Rede Ethernet Realtek RTL810xE FE
-  - Mac OS Mojave 10.14.5
-  - Windows 10 64bits
-  - Os dois SOs estão instalados no mesmo disco.
-  - Clover v2.4k r4961
+  * Dell Inspiron 14 5480 A20S
+    - Intel i7-8565U (Whiskey Lake);
+    - 8GB RAM;
+    - Display FullHD IPS Antirreflexo;
+    - Disco Rígido de 1TB;
+    - 2 USB 3.0, 1 USB 2.0, 1 USB Type-C (DisplayPort e Alimentação);
+    - Leitor de cartão;
+    - Saída para fone de ouvido;
+    - Webcam;
+    - SSD M.2 Nvme Crucial 500GB (instalado após a compra);
+    - BIOS versão: 2.2.0;
+    - Áudio Realtek ALC236;
+    - Interface de Rede Sem Fio Intel Wireless AC9462;
+    - Interface de Rede Ethernet Realtek RTL810xE FE;
+    - Teclado retroiluminado.
+
+## Softwares
+  * Mac OS Mojave 10.14.5;
+  * Clover v2.4k r4961;
+  * Windows 10 64bits;
 
 ## O que funciona?
-  * Quase tudo, exceto o que está listado nos tópicos a seguir.
+  * Intel UHD Graphics 620 com Quartz Extreme (QE/CI) e Metal;
+  * Saída de vídeo e áudio através de HDMI;
+  * Áudio interno e saída para fones;
+  * Áudio através da HDMI;
+  * Unidade de Armazenamento NVMe;
+  * Webcam;
+  * Rede Ethernet;
+  * Sleep e Wake;
+  * Trackpad com gestos;
+  * Monitoramento de CPU, bateria, temperatura, etc;
+  * Bateria com duração de aproximadamente 4h;
+  * Regulagem de brilho no monitor Interno através do painel de configuração e do atalho no teclado (Fn+F11,F12);
+  * Regulagem de volume através dos atalhos Fn+F1,F2,F3;
+  * Atalhos de multimídia Fn+F4,F5 e F6 (anterior, play/pause, próximo);
+  * Teclado retroiluminado;
+  * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs estão instalados no mesmo disco.
 
-## Incompatibilidades
-  * Interface de Rede Wifi e Bluetooth Intel AC9462 não compatível
-  * Interface Gráfica Dedicada MX150 não é compatível
+## Problemas ou incompatibilidades
+  * Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.
+  * Interface Gráfica Dedicada MX150 não é compatível.
 
-## Pendências
-  * Mover as Kexts para a pastas /Library/Extensions
-
+## TODO (pendências)
   * Quando o equipamento dorme as portas USB desligam e não voltam.
-
   * Ajustar a questão das portas USB para retirar o
-
-  * Verificar necessidade das Kexts
-    - SATA-unsupported, e
-      - https://www.tonymacx86.com/threads/guide-dell-inspiron-7560-mojave-installation.261827/
-    - ACPIBatteryManager
-      - https://github.com/RehabMan/OS-X-ACPI-Battery-Driver
-      - https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/
 
 # 2. INSTALAÇÃO
 
 ## Configuração da BIOS
+  * SATA Operation: AHCI;
+  * Drivers: todos;
+  * SMART Reporting: Habilitado
+  * USB Configuration:
+    - Enable USB Boot Support: Sim;
+    - Enable External USB Port: Sim.
+  * Audio: tudo habilitado;
+  * Miscellaneous Devices:
+    - Enable Camera: Sim.
+  * PTT: desabilitado;
+  * Computrace: Dactivate;
+  * SMM: desabilitado;
+  * Secure Boot: desabilitado;
+  * Secure Boot Mode: Deploy Mode;
+  * Intel SGX: Software Controlled;
+  * Performance:
+    - Multi Core Support: habilitado;
+    - Intel SpeedStep: habilitado;
+    - C-States: habilitado;
+    - TurboBoost: habilitado;
+    - HT Control: habilitado;
+  * Power Management:
+    - Enable Intel Speed Shift Technology: habilitado;
+    - USB Wake Support: desabilitado;
+    - Block Sleep: desabilitado;
+  * POST Behavior
+    - Fastboot: Thorough
+  * Virtualization Support
+    - Viritualization, Enable Intel VT habilitado: habilitado;
+    - "VT-d" (Virtualization for Direct I/O): desabilitar, ou incluir dart=0 nos argumentos de boot
 
-- "VT-d" (virtualization for directed i/o) should be disabled if possible (the config.plist includes dart=0 in case you can't do this)
-- "DEP" (data execution prevention) should be enabled for OS X
-- "secure boot " should be disabled
-- "legacy boot" optional (recommend enabled, but boot UEFI if you have it)
-- "CSM" (compatibility support module) enabled or disabled (varies) (recommend enabled, but boot UEFI)
-- "fast boot" (if available) should be disabled.
-- "boot from USB" or "boot from external" enabled
-- SATA mode (if available) should be AHCI
-- TPM should be disabled
+## Instalação
 
-## Criando o Disco de Instalação
+Utilize a image Mojave do Olarila e o config2.plist.
+https://olarila.com/forum/viewtopic.php?f=50&t=6257
 
-Tutorial completo (em inglês) aqui.
+Ou utilize algum outro tutorial, como esse aqui.
 https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/
 
-### Preparando a mídia,
+No geral, os processos de instalação são parecidos: baixar disco de instalação/imagem, instalar Clover, configurar alguma coisa no config.plist, instalar, etc. Caso haja dificuldade na instalação o ideal é perguntar no tópico específico.
 
-  Faça download do Mojave na loja da Apple (se ainda não fez), após o download cancele a instalação forçando o fechamento.
-
-  Então inicie um Terminal e execute o comando.
-
-  ```
-  sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmedia" --volume  /Volumes/install_osx --nointeraction
-  ```
-  renomeie o disco para um nome mais acessível
-
-  ```
-  sudo diskutil rename "Install macOS Mojave" install_osx
-  ```
-
-## Clover
-
-Considerando os arquivos e pastas disponíveis nesse repositório, copie as pastas EFI/Boot e  EFI/CLOVER para a pasta EFI da partição EFI da mídia de instalação.
-
-Você pode fazer download do CLOVER mais atual e instalá-lo na partição EFI, fica a seu critério, de qualquer forma é ideal que se faça esse procedimento de atualização na partição EFI do sistema de destino, mas faremos isso no final.
+Após a instalação é necessário realizar alguns ajustes, veja a seguir.  
 
 ## Pós Instalação
 
-### Update do Clover
+### Instalação do Clover no Disco de Boot
 
+Faça a instalação do Clover no disco de boot do equipamento e depois copie a pasta EFI/CLOVER da mídia removível para a partição EFI do disco de boot.
 
 ### Ajuste do horário no Windows
 
@@ -90,13 +111,11 @@ https://www.tonymacx86.com/threads/fix-incorrect-time-in-windows-osx-dual-boot.1
 
 ### Configurando SMBIOS
 
-Open config.plist from attached CLOVER folder in CloverConfigurator
-Clover Configurator (Global Edition)
-and generate a new SMbios (use drop up/down menu just under the big ?)
+Faça download do Clover Configurator, monte a undiade EFI do disco de boot, e então abra o config.plist da pasta CLOVER no CloverConfigurator.
 
+No Clover Configurator vá em SMBIOS gere os dados dessa aba, use a caixa de seleção abaixo do sinal de interrogação.
 
-### Esconder opções desnecessárias no CLOVER
-  Pegar vídeo da russa, que não é russa
+https://mackie100projects.altervista.org/download/ccg/
 
 ### Aplicando Temas ao Clover
 
@@ -105,6 +124,8 @@ Baixe o CloverThemeManager e modifique o tema do bootloader.
 https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManagerApp/Updates/
 
 # 3. CONFIGURAÇÃO
+
+Aqui eu explico como
 
 ## Kexts utilizados
 
@@ -133,19 +154,17 @@ https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManager
     Para a interface de rede Realtek.
     https://github.com/alexandred/VoodooI2C
 
-  * **VoodooI2C.kext e VoodooI2CHID.kext**
-
-    Para funcionamento do trackpad (com gestos)
-    https://github.com/alexandred/VoodooI2C
-
   * **VoodooPS2Controller.kext**
 
-    Para funcionamento do teclado.
+    Para funcionamento do teclado e do trackpad
 
   * **USBInjectAll.kext**
 
     Para funcionamento das portas USB.
 
+  * **SATA-unsupported**
+
+    Para que o Mac reconheça o chipset Intel 300 Series. Identifiquei uma leve melhora na performance.
 
 ## PATCHES DSDT E SSDT
 
@@ -372,8 +391,16 @@ https://www.elitemacx86.com/threads/fix-black-screen-issue-with-macpro-6-1-and-i
 * AppleMikeyDriver
 https://olarila.com/forum/viewtopic.php?f=50&t=6254&p=56325&hilit=applemikeydriver#p56325
 
+* CsrActiveConfig = 0x3E7
+https://www.reddit.com/r/hackintosh/comments/bt17xk/differences_between_0x67_and_0x3e7/
+
 * com.apple.driver.AppleAHCIPort (External icons patch)
 
+* SATA-unsupported
+
+https://www.tonymacx86.com/threads/guide-dell-inspiron-7560-mojave-installation.261827/
+
+*
 
 *** com.apple.driver.AppleGraphicsDevicePolicy (Prevent AGDP from loading)
 Talvez seja necessário por conta de ter a interface gráfica dedicada
