@@ -395,6 +395,7 @@ https://olarila.com/forum/viewtopic.php?f=50&t=6254&p=56325&hilit=applemikeydriv
 https://www.reddit.com/r/hackintosh/comments/bt17xk/differences_between_0x67_and_0x3e7/
 
 * com.apple.driver.AppleAHCIPort (External icons patch)
+https://hackintosher.com/forums/thread/nvme-shows-as-external.339/
 
 * SATA-unsupported
 

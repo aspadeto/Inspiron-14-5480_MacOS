@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
- * Copyright (c) 2000 - 2018 Intel Corporation
+ * AML/ASL+ Disassembler version 20161210-64(RM)
+ * Copyright (c) 2000 - 2016 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-1.aml, Sat Jun 22 19:05:47 2019
+ * Disassembly of SSDT-1.aml, Wed Jul  3 01:06:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,6 +20,33 @@
  */
 DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
 {
+    /*
+     * iASL Warning: There were 6 external control methods found during
+     * disassembly, but only 4 were resolved (2 unresolved). Additional
+     * ACPI tables may be required to properly disassemble the code. This
+     * resulting disassembler output file may not compile because the
+     * disassembler did not know how many arguments to assign to the
+     * unresolved methods. Note: SSDTs can be dynamically loaded at
+     * runtime and may or may not be available via the host OS.
+     *
+     * To specify the tables needed to resolve external control method
+     * references, the -e option can be used to specify the filenames.
+     * Example iASL invocations:
+     *     iasl -e ssdt1.aml ssdt2.aml ssdt3.aml -d dsdt.aml
+     *     iasl -e dsdt.aml ssdt2.aml -d ssdt1.aml
+     *     iasl -e ssdt*.aml -d dsdt.aml
+     *
+     * In addition, the -fe option can be used to specify a file containing
+     * control method external declarations with the associated method
+     * argument counts. Each line of the file must be of the form:
+     *     External (<method pathname>, MethodObj, <argument count>)
+     * Invocation:
+     *     iasl -fe refs.txt -d dsdt.aml
+     *
+     * The following methods were unresolved and many not compile properly
+     * because the disassembler had to guess at the number of arguments
+     * required for each:
+     */
     External (_SB_.PCI0, DeviceObj)    // (from opcode)
     External (_SB_.PCI0.B0D3, DeviceObj)    // (from opcode)
     External (_SB_.PCI0.GFX0, DeviceObj)    // (from opcode)
@@ -30,6 +57,8 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
     External (DSEN, UnknownObj)    // (from opcode)
     External (ECON, IntObj)    // (from opcode)
     External (GUAM, MethodObj)    // 1 Arguments (from opcode)
+    External (HDOS, MethodObj)    // Warning: Unknown method, guessing 0 arguments
+    External (HNOT, MethodObj)    // Warning: Unknown method, guessing 1 arguments
     External (OSYS, IntObj)    // (from opcode)
     External (PBCL, MethodObj)    // 0 Arguments (from opcode)
     External (PNHM, IntObj)    // (from opcode)
@@ -2590,11 +2619,13 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
 
         Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
+            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
             If (LEqual (Arg0, ToUUID ("3e5b41c6-eb1d-4260-9d15-c71fbadae414")))
             {
-                Switch (ToInteger (Arg2))
+                While (One)
                 {
-                    Case (Zero)
+                    Store (ToInteger (Arg2), _T_0)
+                    If (LEqual (_T_0, Zero))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2602,7 +2633,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (0x0001E7FF)
                         }
                     }
-                    Case (One)
+                    ElseIf (LEqual (_T_0, One))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2634,7 +2665,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x02)
+                    ElseIf (LEqual (_T_0, 0x02))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2642,7 +2673,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x03)
+                    ElseIf (LEqual (_T_0, 0x03))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2650,7 +2681,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x04)
+                    ElseIf (LEqual (_T_0, 0x04))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2658,7 +2689,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x05)
+                    ElseIf (LEqual (_T_0, 0x05))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2666,7 +2697,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x06)
+                    ElseIf (LEqual (_T_0, 0x06))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2674,7 +2705,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x07)
+                    ElseIf (LEqual (_T_0, 0x07))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2683,7 +2714,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x08)
+                    ElseIf (LEqual (_T_0, 0x08))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2699,7 +2730,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x09)
+                    ElseIf (LEqual (_T_0, 0x09))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2707,7 +2738,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (One)
                         }
                     }
-                    Case (0x0A)
+                    ElseIf (LEqual (_T_0, 0x0A))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2717,7 +2748,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (Local0)
                         }
                     }
-                    Case (0x0D)
+                    ElseIf (LEqual (_T_0, 0x0D))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2729,7 +2760,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (Local0)
                         }
                     }
-                    Case (0x0E)
+                    ElseIf (LEqual (_T_0, 0x0E))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2743,7 +2774,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (Local0)
                         }
                     }
-                    Case (0x0F)
+                    ElseIf (LEqual (_T_0, 0x0F))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2757,7 +2788,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                             Return (Local0)
                         }
                     }
-                    Case (0x10)
+                    ElseIf (LEqual (_T_0, 0x10))
                     {
                         If (LEqual (Arg1, One))
                         {
@@ -2773,6 +2804,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                         }
                     }
 
+                    Break
                 }
             }
 

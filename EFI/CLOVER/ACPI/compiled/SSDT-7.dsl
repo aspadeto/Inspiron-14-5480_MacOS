@@ -1,17 +1,17 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
- * Copyright (c) 2000 - 2018 Intel Corporation
+ * AML/ASL+ Disassembler version 20161210-64(RM)
+ * Copyright (c) 2000 - 2016 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-7.aml, Sat Jun 22 19:05:47 2019
+ * Disassembly of SSDT-7.aml, Wed Jul  3 01:06:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
  *     Length           0x00000144 (324)
  *     Revision         0x02
- *     Checksum         0xAF
+ *     Checksum         0xB5
  *     OEM ID           "Intel "
  *     OEM Table ID     "ADebTabl"
  *     OEM Revision     0x00001000 (4096)
@@ -22,9 +22,9 @@ DefinitionBlock ("", "SSDT", 2, "Intel ", "ADebTabl", 0x00001000)
 {
     Scope (\)
     {
-        Name (DPTR, 0x77E75000)
-        Name (EPTR, 0x77E85000)
-        Name (CPTR, 0x77E75020)
+        Name (DPTR, 0x77E55000)
+        Name (EPTR, 0x77E65000)
+        Name (CPTR, 0x77E55020)
         Mutex (MMUT, 0x00)
         OperationRegion (ADBP, SystemIO, 0xB2, 0x02)
         Field (ADBP, ByteAcc, NoLock, Preserve)

@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
- * Copyright (c) 2000 - 2018 Intel Corporation
+ * AML/ASL+ Disassembler version 20161210-64(RM)
+ * Copyright (c) 2000 - 2016 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-4.aml, Sat Jun 22 19:05:47 2019
+ * Disassembly of SSDT-4.aml, Wed Jul  3 01:06:19 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -178,7 +178,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "TbtTypeC", 0x00000000)
                             {
                                 Name (PCKG, Package (0x01)
                                 {
-                                    Buffer (0x10){}
+                                    Buffer (0x10) {}
                                 })
                                 CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
                                 Store (One, REV)
@@ -437,7 +437,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "TbtTypeC", 0x00000000)
                             {
                                 Name (PCKG, Package (0x01)
                                 {
-                                    Buffer (0x10){}
+                                    Buffer (0x10) {}
                                 })
                                 CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
                                 Store (One, REV)
@@ -696,7 +696,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "TbtTypeC", 0x00000000)
                             {
                                 Name (PCKG, Package (0x01)
                                 {
-                                    Buffer (0x10){}
+                                    Buffer (0x10) {}
                                 })
                                 CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
                                 Store (One, REV)
@@ -953,7 +953,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "TbtTypeC", 0x00000000)
                         {
                             Name (PCKG, Package (0x01)
                             {
-                                Buffer (0x10){}
+                                Buffer (0x10) {}
                             })
                             CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
                             Store (One, REV)
