@@ -136,27 +136,26 @@ Aqui eu explico como
 
   * **VirtualSMC.kext, SMCBatteryManager.kext, SMCLightSensor.kext, SMCProcessor.kext, SMCSuperIO.kext**
 
-    Necessária para emulação de várias funções de baixo nível do Mac OS nos equipamentos Intel. Substitui a FakeSMC.kext. Necessitada da Lilu.kext.
+    Necessária para emulação de várias funções de baixo nível do Mac OS nos equipamentos Intel. Substitui a FakeSMC.kext.
     https://github.com/acidanthera/VirtualSMC
 
   * **AppleALC**
 
-    Para o funcionamento da interface de áudio. Depende da Lilu.kext.
+    Para o funcionamento da interface de áudio.
     https://github.com/acidanthera/AppleALC/releases
 
   * **WhateverGreen.kext**
 
-    Para o funcionamento da interface gráfica integrada Intel UHD 620. Depende da Lilu.kext.
+    Para o funcionamento da interface gráfica integrada Intel UHD 620 e da porta HDMI.
     https://github.com/acidanthera/WhateverGreen/releases
 
   * **RealtekRTL8100.kext**
 
     Para a interface de rede Realtek.
-    https://github.com/alexandred/VoodooI2C
 
   * **VoodooPS2Controller.kext**
 
-    Para funcionamento do teclado e do trackpad
+    Para funcionamento do teclado e do trackpad.
 
   * **USBInjectAll.kext**
 
@@ -165,6 +164,10 @@ Aqui eu explico como
   * **SATA-unsupported**
 
     Para que o Mac reconheça o chipset Intel 300 Series. Identifiquei uma leve melhora na performance.
+
+  * **FakePCIID.kext** e **FakePCIID_Intel_HDMI_Audio.kext**
+
+    Para o funcionamento do áudio através da porta HDMI
 
 ## PATCHES DSDT E SSDT
 
