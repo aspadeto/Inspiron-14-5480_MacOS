@@ -5,7 +5,7 @@
 
   Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro, tem boa construção e um ótimo custo/benefício, e, como o resultado da instalação do Mojave foi muito satisfatório, compartilho aqui as configurações aplicadas no equipamento.
 
-## Especificação do Equipamento
+## 1.1 Especificação do Equipamento
   * Dell Inspiron 14 5480 A20S
     - Intel i7-8565U (Whiskey Lake);
     - 8GB RAM;
@@ -21,41 +21,45 @@
     - Interface de Rede Sem Fio Intel Wireless AC9462;
     - Interface de Rede Ethernet Realtek RTL810xE FE;
     - Teclado retroiluminado.
+    - DW1560 comprada separadamente através do Aliexpress.
+  * Softwares
+    - Mac OS Mojave 10.14.5;
+    - Clover v2.4k r4961;
+    - Windows 10 64bits;
 
-## Softwares
-  * Mac OS Mojave 10.14.5;
-  * Clover v2.4k r4961;
-  * Windows 10 64bits;
+## 1.2 O que funciona?
 
-## O que funciona?
-  * Intel UHD Graphics 620 com Quartz Extreme (QE/CI) e Metal;
-  * Saída de vídeo e áudio através de HDMI;
-  * Áudio interno e saída para fones;
-  * Áudio através da HDMI;
-  * Unidade de Armazenamento NVMe;
-  * Webcam;
-  * Rede Ethernet;
-  * Sleep e Wake;
-  * Trackpad com gestos;
-  * Monitoramento de CPU, bateria, temperatura, etc;
-  * Bateria com duração de aproximadamente 4h;
-  * Regulagem de brilho no monitor Interno através do painel de configuração e do atalho no teclado (Fn+F11,F12);
-  * Regulagem de volume através dos atalhos Fn+F1,F2,F3;
-  * Atalhos de multimídia Fn+F4,F5 e F6 (anterior, play/pause, próximo);
-  * Teclado retroiluminado;
-  * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs estão instalados no mesmo disco.
+  * Hardware
+    * Intel UHD Graphics 620 com Quartz Extreme (QE/CI) e Metal;
+    * Saída de vídeo e áudio através de HDMI;
+    * Áudio interno e saída para fones;
+    * Unidade de Armazenamento NVMe;
+    * Webcam;
+    * Rede Ethernet;
+    * Wifi e Bluetooth através da DW1560;
+    * Trackpad com gestos;
+    * Regulagem de brilho no monitor Interno através do painel de configuração e do atalho no teclado (Fn+F11,F12);
+    * Regulagem de volume através dos atalhos Fn+F1,F2,F3;
+    * Atalhos de multimídia Fn+F4,F5 e F6 (anterior, play/pause, próximo);
+    * Teclado retroiluminado com regulagem de brilho.
+  * Funcionalidades:
+    * Sleep e Wake;
+    * Monitoramento de CPU, bateria, temperatura, etc;
+    * Bateria com duração de aproximadamente 4h;
+    * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs dividem a mesma unidade de armazenamento.
 
-## Problemas ou incompatibilidades
-  * Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.
+## 1.3 Problemas ou incompatibilidades
+  * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560, comprada no Aliexpress.
   * Interface Gráfica Dedicada MX150 não é compatível.
+  * Leitor de cartão de memória não funciona.
 
-## TODO (pendências)
-  * Quando o equipamento dorme as portas USB desligam e não voltam.
-  * Ajustar a questão das portas USB para retirar o
+## 1.4 TODO (pendências)
+  * Quando o equipamento dorme as portas USB desligam e não voltam. Falta confirmar se está ok.
+  * A porta USB Type-C ainda não foi testada.
 
 # 2. INSTALAÇÃO
 
-## Configuração da BIOS
+## 2.1 Configuração da BIOS
   * SATA Operation: AHCI;
   * Drivers: todos;
   * SMART Reporting: Habilitado
@@ -87,47 +91,50 @@
     - Viritualization, Enable Intel VT habilitado: habilitado;
     - "VT-d" (Virtualization for Direct I/O): desabilitar, ou incluir dart=0 nos argumentos de boot
 
-## Instalação
+## 2.2 Instalação do Sistema Operacional macOS Mojave
 
 Utilize a image Mojave do Olarila e o config2.plist.
-https://olarila.com/forum/viewtopic.php?f=50&t=6257
+https://olarila.com/forum/viewtopic.php?f=50&t=8685
 
 Ou utilize algum outro tutorial, como esse aqui.
 https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/
 
-No geral, os processos de instalação são parecidos: baixar disco de instalação/imagem, instalar Clover, configurar alguma coisa no config.plist, instalar, etc. Caso haja dificuldade na instalação o ideal é perguntar no tópico específico.
-
 Após a instalação é necessário realizar alguns ajustes, veja a seguir.  
 
-## Pós Instalação
+# 3. PÓS INTALAÇÃO
 
-### Instalação do Clover no Disco de Boot
+## 3.1 Instalação do Clover no Disco de Boot
 
 Faça a instalação do Clover no disco de boot do equipamento e depois copie a pasta EFI/CLOVER da mídia removível para a partição EFI do disco de boot.
 
-### Ajuste do horário no Windows
+## 3.2 Ajuste do horário no Windows
 
 https://www.tonymacx86.com/threads/fix-incorrect-time-in-windows-osx-dual-boot.133719/
 
-### Configurando SMBIOS
+## 3.3 Configurando SMBIOS
 
-Faça download do Clover Configurator, monte a undiade EFI do disco de boot, e então abra o config.plist da pasta CLOVER no CloverConfigurator.
+Faça download do Clover Configurator (https://mackie100projects.altervista.org/download/ccg/), monte a undiade EFI do disco de boot, e então abra o config.plist da pasta CLOVER no CloverConfigurator.
 
 No Clover Configurator vá em SMBIOS gere os dados dessa aba, use a caixa de seleção abaixo do sinal de interrogação.
 
-https://mackie100projects.altervista.org/download/ccg/
-
-### Aplicando Temas ao Clover
+## 3.4 Aplicando Temas ao Clover
 
 Baixe o CloverThemeManager e modifique o tema do bootloader.
 
 https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManagerApp/Updates/
 
-# 3. CONFIGURAÇÃO
+## 3.5 Cópia dos Kexts para a pasta /Library/Extensions
 
-Aqui eu explico como
+Após tudo estar funcionando da forma correta o ideal é mover as kexts da pasta /EFI/Clover/kexts/Other para a pasta /Library/Extensions
 
-## Kexts utilizados
+Para facilitar essa tarefa você pode utilizar a ferramenta Hackintool (https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/).
+
+# 4. CONFIGURAÇÃO
+
+Aqui eu explico quais configurações foram aplicadas no sistema e como essas configurações foram aplicadas.
+Essa parte está aqui apenas para referência, todos estas configurações já estão disponíveis nos arquivos na pasta EFI deste repositório.
+
+## 4.1 Kexts utilizados
 
   * **Lilu.kext**
 
@@ -169,11 +176,15 @@ Aqui eu explico como
 
     Para o funcionamento do áudio através da porta HDMI
 
-## PATCHES DSDT E SSDT
+  * **BrcmFirmwareRepo.kext**, **BrcmPatchRAM2.kext** e **AirportBrcmFixup.kext**
 
-https://sourceforge.net/p/maciasl/wiki/Home/
+    Para o funcionamento da Wifi e da interface DW1560.
 
-### Como fazer patch do DSDT / SSDT
+## 4.2 Patches para DSDT e SSDT
+
+  Antes de começar faça download do MaciASL em https://sourceforge.net/p/maciasl/wiki/Home/.
+
+### 4.2.1 Passos iniciais
 
   1. Iniciar o equipamento, na tela do Clover apertar F4 (talvez seja necessário apertar Fn + F4)
 
@@ -189,7 +200,7 @@ https://sourceforge.net/p/maciasl/wiki/Home/
 
   4. Pronto, agora basta abrir (com o MaciASL) os arquivos DSL e realizar os patches necessários.
 
-### PATCH Básico do DSDT
+### 4.2.2 Correções iniciais no DSDT
 
 O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir.
 
@@ -258,132 +269,176 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
     3. Reinicie o equipamento
 
-### Backup dos arquivos DSDT SSDT para cada alteração abaixo
+### 4.2.3 Patches SSDT e suas finalidades
 
-  Uma boa estratégia é ir fazendo cópias dos arquivos que estão sendo alterados,
-  isso vai facilitar o processo caso seja necessário repetir ou alterar alguma etapa.
-  Assim você não precisar começar do zero.
+  * **SSDT-DisableDGPU.aml**
 
-### Desabilitando a Interface Gráfica Dedicada MX150
+    Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho.
 
-  Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho. Para isso foi adicionado o patch SSDT-DisableDGPU.aml em EFI/CLOVER/ACPI/patched.
+  * **SSDT-PNLFCFL.aml**
 
-  VEN 10DE DEV 1D10
+    Para funcionamento do ajuste do brilho do monitor
 
-  PCIROOT 0, PCI 1C04, PCI 0000
-  ACPI(SB), ACPI(PCI0), RP5, PEGP
+  * **SSDT-BRT6.aml**
 
-### Desabilitando a verificação de Trackpad PS2 do VooodooPS2Controller
+    Para funcionamento dos atalhos Fn+F11 e Fn+F12 para ajuste do brilho do monitor.
 
-  Como esse equipamento não possui trackpad PS2 foi adicionada o patch SSDT-DisableTrackpadProbe.aml em EFI/CLOVER/ACPI/patched.
+  * **SSDT-MCHC.aml**
 
-### Configuração do Trackpad com Gestos com o VoodooI2C
+    Adds the missing Memory (DRAM) Controller to the system
 
-  Será utilizado o VoodooI2C para funcionamento do TrackPad com Gestos, pois o VoodooPS2Controller.kext não funciona, porém, este vai ser necessário para o teclado, conforme veremos a seguir.
+  * **SSDT-RMDT.aml**
 
-  1. Verifique se o repositório VoodooI2C DSDT Patch está adicionado ao MaciASL e, caso necessário, adicione-o.
-     Abra o MaciASL, acesse Preferences, abra a aba Sources e então adicione o item.
-     Nome: VoodooI2C, url: http://raw.github.com/alexandred/VoodooI2C-Patches/master
+    Para funcionamento do ACPIDebug. Totalmente opicional.
 
-     Você pode obter maiores informações aqui: https://voodooi2c.github.io/#Installation/Installation
+    Veja mais informações aqui: https://github.com/RehabMan/OS-X-ACPI-Debug
 
-  2. Aplique os seguintes Patches:
+  * **SSDT-XOSI.aml**
 
-    * VoodooI2C-Patches / Windows 10 Patch
-      Esse patch depende da versão do Windows que veio instalada no seu equipamento. Se o patch para Windows 10 não funcionar, tente os outros.
+    Faz com que o sistema seja identificado como Darwin
 
-    * VoodooI2C-Patches / GPIO Controller Enable [SKL+]
+## 4.3 CONFIGURAÇÕES CLOVER
 
-  3. Compile, aplique o DSDT e reinicie o equipamento.
+O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config, mas foram feitas várias alterações por conta da utilização do Lilu e WhateverGreen.
 
-  4. Instale os Kexts do VoodooI2C na pasta EFI/CLOVER/kext/other
+Entre várias configurações, destaco as seguintes.
 
-    * VoodooI2C.kext,
-    * VoodooI2CHID.kext
-
-  5. Reinicie o equipamento
-
-    A partir daí o trackpad deve estar 100% funcional.
-    Vá até a configuração do sistema e acesse os painéis de preferências Trackpad e Acessibilidade para realizar os ajustes necessários.
-
-## CONFIGURAÇÕES CLOVER
-
-O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config
-
-### Configuração da Interface Gráfica Integrada Intel UHD 620
+### 4.3.1 Configuração da Interface Gráfica Integrada Intel UHD 620
 
   ```
-  <key>Properties</key>
+  <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
   <dict>
-    <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
-    <dict>
-      <key>AAPL,GfxYTile</key>
-      <data>
-      AQAAAA==
-      </data>
-      <key>AAPL,ig-platform-id</key>
-      <data>
-      AACbPg==
-      </data>
-      <key>device-id</key>
-      <data>
-      mz4AAA==
-      </data>
-      <key>disable-external-gpu</key>
-      <data>
-      AQAAAA==
-      </data>
-      <key>framebuffer-fbmem</key>
-      <data>
-      AACQAA==
-      </data>
-      <key>framebuffer-patch-enable</key>
-      <data>
-      AQAAAA==
-      </data>
-      <key>framebuffer-stolenmem</key>
-      <data>
-      AAAwAQ==
-      </data>
-      <key>framebuffer-unifiedmem</key>
-      <data>
-      AAAAgA==
-      </data>
-      <key>hda-gfx</key>
-      <string>onboard-1</string>
-      <key>model</key>
-      <string>UHD Graphics 620 (Whiskey Lake)</string>
-    </dict>
+    <key>AAPL,GfxYTile</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>AAPL,ig-platform-id</key>
+    <data>
+    CQClPg==
+    </data>
+    <key>AAPL,slot-name</key>
+    <string>Internal</string>
+    <key>device-id</key>
+    <data>
+    mz4AAA==
+    </data>
+    <key>device_type</key>
+    <string>VGA compatible controller</string>
+    <key>disable-external-gpu</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>enable-hdmi20</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>framebuffer-camellia</key>
+    <data>
+    AwAAAA==
+    </data>
+    <key>framebuffer-con1-alldata</key>
+    <data>
+    AQEJAAAIAADHAQAA
+    </data>
+    <key>framebuffer-con1-enable</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>framebuffer-con2-alldata</key>
+    <data>
+    AgYKAAAEAADHAQAA
+    </data>
+    <key>framebuffer-con2-enable</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>framebuffer-fbmem</key>
+    <data>
+    AAAAAA==
+    </data>
+    <key>framebuffer-memorycount</key>
+    <data>
+    AwAAAA==
+    </data>
+    <key>framebuffer-mobile</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>framebuffer-patch-enable</key>
+    <data>
+    AQAAAA==
+    </data>
+    <key>framebuffer-pipecount</key>
+    <data>
+    AwAAAA==
+    </data>
+    <key>framebuffer-portcount</key>
+    <data>
+    AwAAAA==
+    </data>
+    <key>framebuffer-stolenmem</key>
+    <data>
+    AACQAw==
+    </data>
+    <key>framebuffer-unifiedmem</key>
+    <data>
+    AAAAYA==
+    </data>
+    <key>hda-gfx</key>
+    <string>onboard-1</string>
+    <key>model</key>
+    <string>UHD Graphics 620 (Whiskey Lake)</string>
   </dict>
   ```
 
-### Configuração do Áudio
+### 4.3.2 Configuração do Áudio
 
-  Device \ Audio \ Inject = 11
+  ```
+  <key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
+  <dict>
+    <key>#model</key>
+    <string>Cannon Point-LP High Definition Audio Controller</string>
+    <key>AAPL,slot-name</key>
+    <string>Internal</string>
+    <key>device-id</key>
+    <data>
+    cKEAAA==
+    </data>
+    <key>device_type</key>
+    <string>Audio device</string>
+    <key>layout-id</key>
+    <data>
+    CwAAAA==
+    </data>
+  </dict>
+  ```
 
-https://github.com/acidanthera/AppleALC/wiki/Supported-codecs
+  Veja mais aqui: https://github.com/acidanthera/AppleALC/wiki/Supported-codecs
 
-### Boot Arguments
+### 4.3.4 Boot Arguments
 
   * dart = 0, detabilita o VT-d apenas para o MacOS caso queira deixar a opção habilitada na BIOS
   * debug=0x100, evita que o sistema reboot em caso de kernel panic
-  * agdpmod=vit9696, agdpmod=vit9696 disables check for board-id (TODO: TESTAR)
+  * agdpmod=vit9696, agdpmod=vit9696 disables check for board-id
 
-# 4. TESTES FINAIS
+# 5. TESTES
 
-## Verificar se o powermanagement está funcionando?
+## 5.1 Verificar se o powermanagement está funcionando?
+
+Ver os seguintes artigos.
 
   https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/
 
   https://software.intel.com/en-us/articles/intel-power-gadget
 
-## Geekbench 4
+## 5.2 Geekbench 4
+  * Geekbench 4 CPU
+    - Single-Core Score: 4670
+    - Multi-Core Score: 12512
+  * Geekbench 4 Computer:
+    - Results: 25669
 
-  * Geekbench 4 CPU:
-
-  * Geekbench 4 PC:
-
-# Referências
+# 6. REFERÊNCIAS
 
 * Configurações parecidas
 https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
@@ -401,13 +456,19 @@ https://www.reddit.com/r/hackintosh/comments/bt17xk/differences_between_0x67_and
 https://hackintosher.com/forums/thread/nvme-shows-as-external.339/
 
 * SATA-unsupported
-
 https://www.tonymacx86.com/threads/guide-dell-inspiron-7560-mojave-installation.261827/
 
-*
+* An iDiot's Guide To Lilu and its Plug-ins
+https://www.tonymacx86.com/threads/an-idiots-guide-to-lilu-and-its-plug-ins.260063/
 
-*** com.apple.driver.AppleGraphicsDevicePolicy (Prevent AGDP from loading)
-Talvez seja necessário por conta de ter a interface gráfica dedicada
+* Hackintool
+https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/
 
-*** Patch kernel for having a full processor cores
-config.plist/KernelAndKextPatches/KernelLapic=true.
+* An iDiot's Guide To iMessage
+https://www.tonymacx86.com/threads/an-idiots-guide-to-imessage.196827/
+
+* Guide: How to Fix iMessage Version 2.1
+https://www.tonymacx86.com/threads/how-to-fix-imessage.110471/
+
+* A Beginner's Guide to Creating a Custom USB SSDT
+https://www.tonymacx86.com/threads/a-beginners-guide-to-creating-a-custom-usb-ssdt.272505/
