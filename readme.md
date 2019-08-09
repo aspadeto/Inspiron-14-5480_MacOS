@@ -391,6 +391,9 @@ Entre várias configurações, destaco as seguintes.
   </dict>
   ```
 
+  Para verificar como configurar os conectores da interface de vídeo veja o guia Acer Swift 5 SF514-53t whiskey lake MacOS10.14.5 na referências.
+
+
 ### 4.3.2 Configuração do Áudio
 
   ```
@@ -441,7 +444,13 @@ Ver os seguintes artigos.
 # 6. REFERÊNCIAS
 
 * Configurações parecidas
-https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
+  * https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
+
+  * macOS Mojave on Dell XPS 9570 https://github.com/bavariancake/XPS9570-macOS
+
+  * XPS15-9560-Mojave https://github.com/jardenliu/XPS15-9560-Mojave/
+
+  * Acer Swift 5 SF514-53t whiskey lake MacOS10.14.5 https://www.tonymacx86.com/threads/guide-acer-swift-5-sf514-53t-whiskey-lake-macos10-14-5.277618/
 
 * AppleGraphicsDevicePolicy, Prevent AGDP from Loading
 https://www.elitemacx86.com/threads/fix-black-screen-issue-with-macpro-6-1-and-imac-15-17-system-definition-nvidia-amd.212/
@@ -472,3 +481,44 @@ https://www.tonymacx86.com/threads/how-to-fix-imessage.110471/
 
 * A Beginner's Guide to Creating a Custom USB SSDT
 https://www.tonymacx86.com/threads/a-beginners-guide-to-creating-a-custom-usb-ssdt.272505/
+
+* Ajuste de DPI
+https://github.com/xzhih/one-key-hidpi
+
+* Custom SSDT para USBInjectAll
+https://www.tonymacx86.com/threads/guide-creating-a-custom-ssdt-for-usbinjectall-kext.211311/
+
+* Patching LAPTOP DSDT/SSDTs
+https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/
+
+* Patching DSDT/SSDT for LAPTOP backlight control
+https://www.tonymacx86.com/threads/guide-patching-dsdt-ssdt-for-laptop-backlight-control.152659/
+
+* Disabling discrete graphics in dual-GPU laptops
+https://www.tonymacx86.com/threads/guide-disabling-discrete-graphics-in-dual-gpu-laptops.163772/
+
+* Intel® Power Gadget
+https://software.intel.com/en-us/articles/intel-power-gadget
+
+* GPIO Pinning
+https://voodooi2c.github.io/#GPIO%20Pinning/GPIO%20Pinning
+
+* Clover EFI Bootloader - Understanding KextsToPatch HOW TO GUIDE
+https://www.insanelymac.com/forum/topic/311512-clover-efi-bootloader-understanding-kextstopatch-how-to-guide/
+
+* Improving Sleep on a Hackintosh (Wakeup, Freezes, Black Screens)
+https://hackintosher.com/forums/thread/improving-sleep-on-a-hackintosh-wakeup-freezes-black-screens.486/
+
+* A Guide on Fixing Sleep Issues
+https://www.insanelymac.com/forum/topic/306737-a-guide-on-fixing-sleep-issues/
+
+* DSDT/SSDT - Conhecimentos Gerais https://www.insanelymac.com/forum/topic/297771-guia-dsdtssdt-conhecimentos-gerais/
+
+* DSDT/SSDT: Everything you need to know about SSDT
+https://hackintoshlaptop.net/dsdtssdt-everything-you-need-to-know-about-ssdt/
+
+* Broadcom WiFi/Bluetooth [Guide]
+https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/
+
+* WhateverGreen Intel® HD Graphics FAQ
+https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
