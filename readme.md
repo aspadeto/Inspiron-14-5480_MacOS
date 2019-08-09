@@ -1,9 +1,10 @@
 # 1. INTRODUÇÃO
 
-  MacOS Mojave (10.14.5) no Dell Inspiron 14 5480.
-  Esse não é bem um guia, apesar de utilizar Hackintoshs desde o Snow Leopard não tenho tanta experiência com hardwares variados, muito menos estou habilitado a tirar dúvidas sobre questões diversas. Esse documento está mais para review.
+  MacOS Mojave (10.14.5) no Dell Inspiron 14 5480 A20s.
 
-  Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro, tem boa construção e um ótimo custo/benefício, e, como o resultado da instalação do Mojave foi muito satisfatório, compartilho aqui as configurações aplicadas no equipamento.
+  Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro e tem um ótimo custo/benefício.
+
+  Como o resultado da instalação do Mojave foi muito satisfatório compartilho aqui as configurações aplicadas no equipamento.
 
 ## 1.1 Especificação do Equipamento
   * Dell Inspiron 14 5480 A20S
@@ -15,17 +16,20 @@
     - Leitor de cartão;
     - Saída para fone de ouvido;
     - Webcam;
-    - SSD M.2 Nvme Crucial 500GB (instalado após a compra);
     - BIOS versão: 2.2.0;
     - Áudio Realtek ALC236;
     - Interface de Rede Sem Fio Intel Wireless AC9462;
     - Interface de Rede Ethernet Realtek RTL810xE FE;
     - Teclado retroiluminado.
-    - DW1560 comprada separadamente através do Aliexpress.
+  * Extras (adicionados posteriormente)
+    - SSD M.2 Nvme Crucial 500GB;
+    - Dell DW1560 Broadcom BCM94352Z Rede sem fio + Bluetooth 4.0 comprada no Aliexpress.
   * Softwares
     - Mac OS Mojave 10.14.5;
     - Clover v2.4k r4961;
     - Windows 10 64bits;
+  * Upgrades futuros:
+    - Acrescentar um pente de memória de 8GB DDR4.
 
 ## 1.2 O que funciona?
 
@@ -49,13 +53,14 @@
     * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs dividem a mesma unidade de armazenamento.
 
 ## 1.3 Problemas ou incompatibilidades
-  * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560, comprada no Aliexpress.
+  * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560.
   * Interface Gráfica Dedicada MX150 não é compatível.
   * Leitor de cartão de memória não funciona.
 
 ## 1.4 TODO (pendências)
-  * Quando o equipamento dorme as portas USB desligam e não voltam. Falta confirmar se está ok.
-  * A porta USB Type-C ainda não foi testada.
+  * Quando o equipamento dorme as portas USB desligam e não voltam, Falta confirmar se está ok;
+  * A porta USB Type-C ainda não foi testada;
+  * Configuração das portas USB.
 
 # 2. INSTALAÇÃO
 
