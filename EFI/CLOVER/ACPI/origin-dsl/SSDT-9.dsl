@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20161210-64(RM)
- * Copyright (c) 2000 - 2016 Intel Corporation
+ * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
+ * Copyright (c) 2000 - 2018 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-9.aml, Wed Jul  3 01:06:19 2019
+ * Disassembly of ../origin-rom2/SSDT-9.aml, Sat Oct  5 10:19:54 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -52,7 +52,6 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (_SB_.PCI0.RP05.TGPC, IntObj)    // (from opcode)
     External (_SB_.PCI0.SGPO, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PR00._PSS, MethodObj)    // 0 Arguments (from opcode)
-    External (CBCN, UnknownObj)    // Warning: Unknown object
     External (DID1, UnknownObj)    // (from opcode)
     External (DID2, UnknownObj)    // (from opcode)
     External (DID3, UnknownObj)    // (from opcode)
@@ -61,8 +60,6 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (DID6, UnknownObj)    // (from opcode)
     External (DID7, UnknownObj)    // (from opcode)
     External (DID8, UnknownObj)    // (from opcode)
-    External (DPGE, UnknownObj)    // Warning: Unknown object
-    External (DVID, UnknownObj)    // Warning: Unknown object
     External (EBAS, UnknownObj)    // (from opcode)
     External (GPRW, MethodObj)    // 2 Arguments (from opcode)
     External (HGPS, MethodObj)    // 1 Arguments (from opcode)
@@ -70,8 +67,6 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (HRE0, UnknownObj)    // (from opcode)
     External (HRG0, UnknownObj)    // (from opcode)
     External (HYSS, UnknownObj)    // (from opcode)
-    External (LASX, UnknownObj)    // Warning: Unknown object
-    External (NCB7, UnknownObj)    // Warning: Unknown object
     External (NVGA, UnknownObj)    // (from opcode)
     External (NVHA, UnknownObj)    // (from opcode)
     External (NXD1, UnknownObj)    // (from opcode)
@@ -595,68 +590,65 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
 
         Method (CTOI, 1, Serialized)
         {
-            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-            While (One)
+            Switch (ToInteger (Arg0))
             {
-                Store (ToInteger (Arg0), _T_0)
-                If (LEqual (_T_0, One))
+                Case (One)
                 {
                     Return (One)
                 }
-                ElseIf (LEqual (_T_0, 0x02))
+                Case (0x02)
                 {
                     Return (0x02)
                 }
-                ElseIf (LEqual (_T_0, 0x04))
+                Case (0x04)
                 {
                     Return (0x03)
                 }
-                ElseIf (LEqual (_T_0, 0x08))
+                Case (0x08)
                 {
                     Return (0x04)
                 }
-                ElseIf (LEqual (_T_0, 0x10))
+                Case (0x10)
                 {
                     Return (0x05)
                 }
-                ElseIf (LEqual (_T_0, 0x20))
+                Case (0x20)
                 {
                     Return (0x06)
                 }
-                ElseIf (LEqual (_T_0, 0x40))
+                Case (0x40)
                 {
                     Return (0x07)
                 }
-                ElseIf (LEqual (_T_0, 0x03))
+                Case (0x03)
                 {
                     Return (0x08)
                 }
-                ElseIf (LEqual (_T_0, 0x06))
+                Case (0x06)
                 {
                     Return (0x09)
                 }
-                ElseIf (LEqual (_T_0, 0x0A))
+                Case (0x0A)
                 {
                     Return (0x0A)
                 }
-                ElseIf (LEqual (_T_0, 0x12))
+                Case (0x12)
                 {
                     Return (0x0B)
                 }
-                ElseIf (LEqual (_T_0, 0x22))
+                Case (0x22)
                 {
                     Return (0x0C)
                 }
-                ElseIf (LEqual (_T_0, 0x42))
+                Case (0x42)
                 {
                     Return (0x0D)
                 }
-                Else
+                Default
                 {
                     Return (One)
                 }
 
-                Break
             }
         }
 
@@ -1088,24 +1080,22 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
 
         Method (NGC6, 4, Serialized)
         {
-            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
             Store ("------- GC6 DSM --------", Debug)
             If (LLess (Arg1, 0x0100))
             {
                 Return (0x80000001)
             }
 
-            While (One)
+            Switch (ToInteger (Arg2))
             {
-                Store (ToInteger (Arg2), _T_0)
-                If (LEqual (_T_0, Zero))
+                Case (Zero)
                 {
                     Return (Buffer (0x04)
                     {
                          0x1B, 0x00, 0x00, 0x00                         
                     })
                 }
-                ElseIf (LEqual (_T_0, One))
+                Case (One)
                 {
                     Name (JTB1, Buffer (0x04)
                     {
@@ -1135,12 +1125,12 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                     Store (0x0103, JTRV)
                     Return (JTB1)
                 }
-                ElseIf (LEqual (_T_0, 0x02))
+                Case (0x02)
                 {
                     Store ("GPS fun 19", Debug)
                     Return (Arg3)
                 }
-                ElseIf (LEqual (_T_0, 0x03))
+                Case (0x03)
                 {
                     CreateField (Arg3, Zero, 0x03, GUPC)
                     CreateField (Arg3, 0x04, One, PLPC)
@@ -1208,15 +1198,14 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                             Store (Zero, GPGS)
                         }
                     }
-                    ElseIf (LEqual (ToInteger (GUPC), 0x06)) {}
+                    ElseIf (LEqual (ToInteger (GUPC), 0x06)){}
                     Return (JTB3)
                 }
-                ElseIf (LEqual (_T_0, 0x04))
+                Case (0x04)
                 {
                     Return (0x80000002)
                 }
 
-                Break
             }
 
             Return (0x80000002)
@@ -1226,7 +1215,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     Scope (\_SB.PCI0.RP05.PEGP)
     {
         Name (PSAP, Zero)
-        Name (GPSP, Buffer (0x24) {})
+        Name (GPSP, Buffer (0x24){})
         CreateDWordField (GPSP, Zero, RETN)
         CreateDWordField (GPSP, 0x04, VRV1)
         CreateDWordField (GPSP, 0x08, TGPU)
@@ -1239,18 +1228,15 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
         Name (NLIM, Zero)
         Method (GPS, 4, Serialized)
         {
-            Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
-            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
             Store ("<<< GPS >>>", Debug)
             If (LNotEqual (Arg1, 0x0100))
             {
                 Return (0x80000002)
             }
 
-            While (One)
+            Switch (ToInteger (Arg2))
             {
-                Store (ToInteger (Arg2), _T_0)
-                If (LEqual (_T_0, Zero))
+                Case (Zero)
                 {
                     Store ("GPS fun 0", Debug)
                     Return (Buffer (0x08)
@@ -1258,7 +1244,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                          0x01, 0x00, 0x08, 0x00, 0x0F, 0x04, 0x00, 0x00 
                     })
                 }
-                ElseIf (LEqual (_T_0, 0x13))
+                Case (0x13)
                 {
                     Store ("GPS fun 19", Debug)
                     HGPS (Arg3)
@@ -1266,7 +1252,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                     Or (RET9, 0x04, RET9)
                     Return (RET9)
                 }
-                ElseIf (LEqual (_T_0, 0x20))
+                Case (0x20)
                 {
                     Store ("GPS fun 32", Debug)
                     Name (RET1, Zero)
@@ -1300,12 +1286,12 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                     Or (RET1, 0x02, RET1)
                     Return (RET1)
                 }
-                ElseIf (LEqual (_T_0, 0x21))
+                Case (0x21)
                 {
                     Store ("GPS fun 21", Debug)
                     Return (\_SB.PR00._PSS ())
                 }
-                ElseIf (LEqual (_T_0, 0x22))
+                Case (0x22)
                 {
                     CreateByteField (Arg3, Zero, PCAP)
                     Store (PCAP, \_SB.CPPC)
@@ -1313,12 +1299,12 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                     Store (PCAP, PSAP)
                     Return (PCAP)
                 }
-                ElseIf (LEqual (_T_0, 0x23))
+                Case (0x23)
                 {
                     Store ("GPS fun 23", Debug)
                     Return (PSAP)
                 }
-                ElseIf (LEqual (_T_0, 0x2A))
+                Case (0x2A)
                 {
                     Store ("GPS fun 42", Debug)
                     CreateByteField (Arg3, Zero, PSH0)
@@ -1331,10 +1317,9 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                     CreateBitField (Arg3, 0x0D, SEN1)
                     CreateBitField (Arg3, 0x0E, SEN2)
                     Store (0x00010000, VRV1)
-                    While (One)
+                    Switch (PSH0)
                     {
-                        Store (PSH0, _T_1)
-                        If (LEqual (_T_1, Zero))
+                        Case (Zero)
                         {
                             If (CPUT)
                             {
@@ -1345,14 +1330,14 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
 
                             Return (GPSP)
                         }
-                        ElseIf (LEqual (_T_1, One))
+                        Case (One)
                         {
                             Store (0x0300, RETN)
                             Or (RETN, PSH0, RETN)
                             Store (0x03E8, PDTS)
                             Return (GPSP)
                         }
-                        ElseIf (LEqual (_T_1, 0x02))
+                        Case (0x02)
                         {
                             Store (0x0102, RETN)
                             Store (0x46, TGPU)
@@ -1365,13 +1350,11 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                             Return (GPSP)
                         }
 
-                        Break
                     }
 
                     Return (0x80000002)
                 }
 
-                Break
             }
 
             Return (0x80000002)

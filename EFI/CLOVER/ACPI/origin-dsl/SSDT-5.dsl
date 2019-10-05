@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20161210-64(RM)
- * Copyright (c) 2000 - 2016 Intel Corporation
+ * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
+ * Copyright (c) 2000 - 2018 Intel Corporation
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-5.aml, Wed Jul  3 01:06:19 2019
+ * Disassembly of ../origin-rom2/SSDT-5.aml, Sat Oct  5 10:19:54 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -50,7 +50,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "UsbCTabl", 0x00001000)
             {
                 Name (PCKG, Package (0x01)
                 {
-                    Buffer (0x10) {}
+                    Buffer (0x10){}
                 })
                 CreateField (DerefOf (Index (PCKG, Zero)), Zero, 0x07, REV)
                 Store (0x02, REV)
@@ -170,20 +170,18 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "UsbCTabl", 0x00001000)
 
             Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 If (LEqual (Arg0, ToUUID ("6f8398c2-7ca4-11e4-ad36-631042b5008f")))
                 {
-                    While (One)
+                    Switch (ToInteger (Arg2))
                     {
-                        Store (ToInteger (Arg2), _T_0)
-                        If (LEqual (_T_0, Zero))
+                        Case (Zero)
                         {
                             Return (Buffer (One)
                             {
                                  0x0F                                           
                             })
                         }
-                        ElseIf (LEqual (_T_0, One))
+                        Case (One)
                         {
                             Acquire (ECMU, 0xFFFF)
                             \ECWB (0xA0, MGO0)
@@ -213,7 +211,7 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "UsbCTabl", 0x00001000)
                             \ECWB (0xB0, 0xE0)
                             Release (ECMU)
                         }
-                        ElseIf (LEqual (_T_0, 0x02))
+                        Case (0x02)
                         {
                             Acquire (ECMU, 0xFFFF)
                             Store (\ECRB (0x90), MGI0)
@@ -238,12 +236,11 @@ DefinitionBlock ("", "SSDT", 2, "DELL\x", "UsbCTabl", 0x00001000)
                             Store (\ECRB (0x87), CCI3)
                             Release (ECMU)
                         }
-                        ElseIf (LEqual (_T_0, 0x03))
+                        Case (0x03)
                         {
                             Return (XDCE)
                         }
 
-                        Break
                     }
                 }
 
