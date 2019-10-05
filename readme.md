@@ -1,6 +1,8 @@
 # 1. INTRODUÇÃO
 
-  MacOS Mojave (10.14.5) no Dell Inspiron 14 5480 A20s.
+  Apresento a seguir a experiência exitosa de utilização do macOS Mojave (10.14.5) no Dell Inspiron 14 5480 A20s.
+
+  O repositório https://github.com/aspadeto/Inspiron-14-5480_MacOS traz todo conteúdo utilizado nesse guia e maiores detalhes sobre a configuração.
 
   Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro e tem um ótimo custo/benefício.
 
@@ -16,7 +18,7 @@
     - Leitor de cartão;
     - Saída para fone de ouvido;
     - Webcam;
-    - BIOS versão: 2.2.0;
+    - BIOS versão: ~~2.2.0~~ 2.4.0 (Bios foi atualizada, isso exigiu a realização do patch DSDT novamente);
     - Áudio Realtek ALC236;
     - Interface de Rede Sem Fio Intel Wireless AC9462;
     - Interface de Rede Ethernet Realtek RTL810xE FE;
@@ -51,6 +53,7 @@
     * Monitoramento de CPU, bateria, temperatura, etc;
     * Bateria com duração de aproximadamente 4h;
     * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs dividem a mesma unidade de armazenamento.
+    * A porta USB Type-C testada: funciona inclusive para carregamento do laptop;
 
 ## 1.3 Problemas ou incompatibilidades
   * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560.
@@ -58,9 +61,7 @@
   * Leitor de cartão de memória não funciona.
 
 ## 1.4 TODO (pendências)
-  * Quando o equipamento dorme as portas USB desligam e não voltam, Falta confirmar se está ok;
-  * A porta USB Type-C ainda não foi testada;
-  * Configuração das portas USB.
+  * Quando o equipamento dorme as portas USB desligam e não voltam. Falta confirmar se está ok;
 
 # 2. INSTALAÇÃO
 
@@ -302,6 +303,10 @@ O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir
 
     Faz com que o sistema seja identificado como Darwin
 
+  * **SSDT-USBX.aml** e **SSDT-UIAC.aml**
+
+    Configura as portas USB do equipamento. É necessário a USBInjectAll.kext.
+
 ## 4.3 CONFIGURAÇÕES CLOVER
 
 O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config, mas foram feitas várias alterações por conta da utilização do Lilu e WhateverGreen.
@@ -427,7 +432,7 @@ Entre várias configurações, destaco as seguintes.
 
   * dart = 0, detabilita o VT-d apenas para o MacOS caso queira deixar a opção habilitada na BIOS
   * debug=0x100, evita que o sistema reboot em caso de kernel panic
-  * agdpmod=vit9696, agdpmod=vit9696 disables check for board-id
+  * agdpmod=vit9696 disables check for board-id
 
 # 5. TESTES
 
