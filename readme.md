@@ -1,6 +1,6 @@
 # 1. INTRODUÇÃO
 
-  Apresento a seguir a experiência exitosa de utilização do macOS Mojave (10.14.5) no Dell Inspiron 14 5480 A20s.
+  Apresento a seguir a experiência exitosa de utilização do macOS Mojave no Dell Inspiron 14 5480 A20s.
 
   O repositório https://github.com/aspadeto/Inspiron-14-5480_MacOS traz todo conteúdo utilizado nesse guia e maiores detalhes sobre a configuração.
 
@@ -27,8 +27,8 @@
     - SSD M.2 Nvme Crucial 500GB;
     - Dell DW1560 Broadcom BCM94352Z Rede sem fio + Bluetooth 4.0 comprada no Aliexpress.
   * Softwares
-    - Mac OS Mojave 10.14.5;
-    - Clover v2.4k r4961;
+    - Mac OS Mojave 10.14.5 - 6;
+    - Clover (v2.4k r4961, 2.5 5103);
     - Windows 10 64bits;
   * Upgrades futuros:
     - Acrescentar um pente de memória de 8GB DDR4.
@@ -52,7 +52,7 @@
     * Sleep e Wake;
     * Monitoramento de CPU, bateria, temperatura, etc;
     * Bateria com duração de aproximadamente 4h;
-    * Dual boot Mac OS Mojave 10.14.5 e Windows 10, os dois SOs dividem a mesma unidade de armazenamento.
+    * Dual boot OSx-Windows, os dois SOs dividem a mesma unidade de armazenamento.
     * A porta USB Type-C testada: funciona inclusive para carregamento do laptop;
 
 ## 1.3 Problemas ou incompatibilidades
@@ -61,7 +61,23 @@
   * Leitor de cartão de memória não funciona.
 
 ## 1.4 TODO (pendências)
-  * Quando o equipamento dorme as portas USB desligam e não voltam. Falta confirmar se está ok;
+  * syscl-USBFix: Quando o equipamento dorme as portas USB desligam e não voltam.
+  * verificar questão do voltageshift
+    * Undervolting with VoltageShift
+https://sitechprog.blogspot.com/2017/06/voltageshift.html
+https://github.com/sicreative/VoltageShift
+The two links have a pretty decent explanation of how to use it.
+Here is a brief explanation of how it works. VoltageShift writes these offsets to MSR. Meaning once the system shutdown completely you will lose these settings. That includes shutdown and hibernation but if you were to just restart and boot into Windows, these settings actually stay.
+Apparently it doesn't persist through sleep even though it says it does. Meaning you'll have to either run the intervals or run it manually when wake. A small script makes this super easy.
+When you build with their launch daemon tool, it builds a daemon which will set these offsets on boot and to the offsets in x time intervals to set them again if your laptop happened to hibernate or sleep.
+I've had success with these settings CPU -25mv, GPU -90mv, Cache -125mv
+./voltageshift offset -125 -90 -125
+Above is for manually setting them! Follow the instructions for building the launch daemon.
+My recommendation is to just set it manually for a week or so, once you know you are stable then build the launch daemon.
+Also you can change these settings on the fly if you have Windows installed with Intel XTU. Test for stability there then apply the same with VoltageShift.
+  * usar combojack ??
+  * CPUFirend ??
+  * LiluFriend?
 
 # 2. INSTALAÇÃO
 
@@ -154,7 +170,7 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 
   * **AppleALC**
 
-    Para o funcionamento da interface de áudio.
+    Para o funcionamento da interface de áudio. (necessita das especificações em config.plist)
     https://github.com/acidanthera/AppleALC/releases
 
   * **WhateverGreen.kext**
@@ -168,11 +184,16 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 
   * **VoodooPS2Controller.kext**
 
-    Para funcionamento do teclado e do trackpad.
+    Para funcionamento do teclado ~~e do trackpad~~.
+    Os plugins VoodooPS2Trackpad e VoodooPS2Mouse foram removidos para evitar conflito com o VoodooI2C.
+
+  * **VoodooI2C.kext** e **VoodooI2CHID.kext**
+
+    Para funcionamento do trackpad. (necessita das alterações no DSDT)
 
   * **USBInjectAll.kext**
 
-    Para funcionamento das portas USB.
+    Para funcionamento das portas USB. (necessita do patch)
 
   * **SATA-unsupported**
 
@@ -193,93 +214,106 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 ### 4.2.1 Passos iniciais
 
   1. Iniciar o equipamento, na tela do Clover apertar F4 (talvez seja necessário apertar Fn + F4)
-
-  Isso vai gerar os arquivos necessários na pasta EFI/CLOVER/ACPI/origin
+  
+      Isso vai gerar os arquivos necessários na pasta EFI/CLOVER/ACPI/origin
 
   2. Tire uma cópia desses arquvos para outra pasta e selecione apenas os que iniciam com SSDT-\*.aml (SSDT-1.aml, por exemplo) e DSDT.aml, o restante pode ser descartado.
 
   3. Execute o comando a seguir para gerar os arquivos DSL necessários.
+      > iasl -dl \*.aml
 
-  > iasl -dl \*.aml
+      Se aparecer "Disassembly completed" é porque deu certo.
 
-  Se aparecer "Disassembly completed" é porque deu certo.
-
-  4. Pronto, agora basta abrir (com o MaciASL) os arquivos DSL e realizar os patches necessários.
+  1. Pronto, agora basta abrir (com o MaciASL) os arquivos DSL e realizar os patches necessários.
 
 ### 4.2.2 Correções iniciais no DSDT
 
-O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir.
+  O equipamento exigiu algumas correções básicas no DSDT, como explico a seguir.
 
   1. Código fonte com sintaxe incorreta
 
-  Erro: unexpected PARSEOP_IF, expecting PARSEOP_CLOSE_PAREN or ','
+      Erro: unexpected PARSEOP_IF, expecting PARSEOP_CLOSE_PAREN or ','
 
-  É necessário corrigir esse pedaço de código.
+      É necessário corrigir esse pedaço de código.
 
-   ```
-     If (LEqual (PM6H, One))
-     {
-         CreateBitField (BUF0, \_SB.PCI0._Y0C._RW, ECRW)  // _RW_: Read-Write Status
-         Store (Zero, ECRW (If (PM0H)
-                 {
-                     CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
-                     Store (Zero, F0LN)
-                 }))
-     }
-   ```
+      ```
+      If (LEqual (PM6H, One))
+      {
+          CreateBitField (BUF0, \_SB.PCI0._Y0C._RW, ECRW)  // _RW_: Read-Write Status
+          Store (Zero, ECRW (If (PM0H)
+                  {
+                      CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
+                      Store (Zero, F0LN)
+                  }))
+      }
+      ```
 
-   Para que fique desse jeito:
+      Para que fique desse jeito:
 
-   ```
-   If (LEqual (PM6H, One))
-   {
-       CreateBitField (BUF0, \_SB.PCI0._Y0C._RW, ECRW)  // _RW_: Read-Write Status
-       Store (Zero, ECRW)
-   }
-   If (PM0H)
-   {
-       CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
-       Store (Zero, F0LN)
-   }
-   ```
+      ```
+      If (LEqual (PM6H, One))
+      {
+          CreateBitField (BUF0, \_SB.PCI0._Y0C._RW, ECRW)  // _RW_: Read-Write Status
+          Store (Zero, ECRW)
+      }
+      If (PM0H)
+      {
+          CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
+          Store (Zero, F0LN)
+      }```
+
 
   2. Linhas com ZERO
 
-  Erro: 6327, 6126, syntax error, unexpected PARSEOP_ZERO
+      Erro: 6327, 6126, syntax error, unexpected PARSEOP_ZERO
 
-  É necessário apagar as linhas ZERO **indicadas nas mensagens de erro**, como no exemplo a seguir. Não apague nada em outros lugares.
-
-  ```
-  Zero
-  Zero
-  Zero
-  Zero
-  Zero
-  Zero
-  Zero
-  ```
-
-  Pronto, a correção básica foi feita, agora podemos passar para o próximo passo.
-
-  3. Compile, aplique e reinicie o computador
-
-    1. Compilando
+      É necessário apagar as linhas ZERO **indicadas nas mensagens de erro**, como no exemplo a seguir. Não apague nada em outros lugares.
 
       ```
-      iasl DSDT.dsl
+      Zero
+      Zero
+      Zero
+      Zero
+      Zero
+      Zero
+      Zero
       ```
 
-      Observe que o comando deve retornar "Compilation complete. 0 Errors".
+  3. Patches em GPI0 e TDP0 para o funcionamento do trackpad I2C
 
-    2. Copie o arquivo resultante para a pasta EFI/CLOVER/ACPI/patched
+      Aplique os patches:
 
-    3. Reinicie o equipamento
+      ```
+      into method label _STA parent_label GPI0 replace_content begin
+        Return (0x0F)
+      end;
+      ```
+
+      ```
+      into method label _CRS parent_label TPD0 replace_content begin
+        Return (ConcatenateResTemplate (SBFB, SBFG))
+      end;
+      ```
+
+  4. Compile, aplique e reinicie o computador
+
+     1. Compilando
+
+        ```
+        iasl DSDT.dsl
+        ```
+
+        Observe que o comando deve retornar "Compilation complete. 0 Errors".
+
+     1. Copie o arquivo resultante para a pasta EFI/CLOVER/ACPI/patched
+
+     2. Reinicie o equipamento
 
 ### 4.2.3 Patches SSDT e suas finalidades
 
   * **SSDT-DisableDGPU.aml**
 
-    Não há necessidade de manter a interface gráfica dedicada funcionando pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho.
+    Não há necessidade de manter a interface gráfica dedicada ligada pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho.
 
   * **SSDT-PNLFCFL.aml**
 
@@ -532,3 +566,6 @@ https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/
 
 * WhateverGreen Intel® HD Graphics FAQ
 https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
+
+* Enable I2C Trackpad (VoodooI2C) - Not a Guide... not really
+https://olarila.com/forum/viewtopic.php?t=8087

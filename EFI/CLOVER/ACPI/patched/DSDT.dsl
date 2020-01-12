@@ -18887,11 +18887,6 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
 
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If (LEqual (GPHD, One))
-                {
-                    Return (0x03)
-                }
-
                 Return (0x0F)
             }
         }
@@ -44293,17 +44288,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
 
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
-                If (LLess (OSYS, 0x07DC))
-                {
-                    Return (SBFI)
-                }
-
-                If (LEqual (TPDM, Zero))
-                {
-                    Return (ConcatenateResTemplate (I2CM (I2CX, BADR, SPED), SBFG))
-                }
-
-                Return (ConcatenateResTemplate (I2CM (I2CX, BADR, SPED), SBFI))
+                Return (ConcatenateResTemplate (SBFB, SBFG))
             }
         }
 
