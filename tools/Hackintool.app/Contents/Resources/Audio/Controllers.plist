@@ -402,6 +402,106 @@
 	</dict>
 	<dict>
 		<key>Device</key>
+		<integer>41329</integer>
+		<key>Name</key>
+		<string>Kaby Lake H PCH HD Audio</string>
+		<key>Patches</key>
+		<array>
+			<dict>
+				<key>Count</key>
+				<integer>6</integer>
+				<key>Find</key>
+				<data>cKEAAA==</data>
+				<key>MinKernel</key>
+				<integer>16</integer>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>caEAAA==</data>
+			</dict>
+			<dict>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Find</key>
+				<data>hoBwoQ==</data>
+				<key>MinKernel</key>
+				<integer>16</integer>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>hoBxoQ==</data>
+			</dict>
+		</array>
+		<key>Vendor</key>
+		<string>Intel</string>
+	</dict>
+	<dict>
+		<key>Device</key>
+		<real>43752</real>
+		<key>Model</key>
+		<string>Desktop</string>
+		<key>Name</key>
+		<string>AMD R9 Fury HDMI Audio</string>
+		<key>Patches</key>
+		<array>
+			<dict>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>AhDYqg==</data>
+				<key>MinKernel</key>
+				<integer>15</integer>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>AhDoqg==</data>
+			</dict>
+			<dict>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>2KoAAA==</data>
+				<key>MinKernel</key>
+				<integer>15</integer>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>6KoAAA==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Lowers the if condition to let the patch above work (older os)</string>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>16oAAA==</data>
+				<key>MinKernel</key>
+				<integer>15</integer>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>56oAAA==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Lowers the if condition to let the patch above work (10.13.4 17E182a+)</string>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>eFX//w==</data>
+				<key>MinKernel</key>
+				<integer>16</integer>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>uFX//w==</data>
+			</dict>
+		</array>
+		<key>Vendor</key>
+		<string>AMD</string>
+	</dict>
+	<dict>
+		<key>Device</key>
 		<integer>43720</integer>
 		<key>Model</key>
 		<string>Desktop</string>
@@ -460,6 +560,43 @@
 				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>uFX//w==</data>
+			</dict>
+		</array>
+		<key>Vendor</key>
+		<string>AMD</string>
+	</dict>
+	<dict>
+		<key>Device</key>
+		<integer>43784</integer>
+		<key>Model</key>
+		<string>Desktop</string>
+		<key>Name</key>
+		<string>AMD Vega-M HDMI</string>
+		<key>Patches</key>
+		<array>
+			<dict>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>AhDYqg==</data>
+				<key>MinKernel</key>
+				<integer>15</integer>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>AhAIqw==</data>
+			</dict>
+			<dict>
+				<key>Count</key>
+				<integer>2</integer>
+				<key>Find</key>
+				<data>2KoAAA==</data>
+				<key>MinKernel</key>
+				<integer>15</integer>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>CKsAAA==</data>
 			</dict>
 		</array>
 		<key>Vendor</key>
@@ -752,6 +889,47 @@
 				<string>AppleHDAController</string>
 				<key>Replace</key>
 				<data>IhDjFQ==</data>
+			</dict>
+			<dict>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Find</key>
+				<data>PQIQAAB0</data>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>PSIQAAB+</data>
+			</dict>
+			<dict>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Find</key>
+				<data>SYsHTIn//5AYCgAA</data>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>DCBmNSIQdAQxwP/I</data>
+			</dict>
+		</array>
+		<key>Vendor</key>
+		<string>AMDZEN</string>
+	</dict>
+	<dict>
+		<key>Device</key>
+		<integer>5255</integer>
+		<key>Name</key>
+		<string>AMD Zen Audio Controller 0x1487</string>
+		<key>Patches</key>
+		<array>
+			<dict>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Find</key>
+				<data>hoA+Og==</data>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>IhCHFA==</data>
 			</dict>
 			<dict>
 				<key>Count</key>

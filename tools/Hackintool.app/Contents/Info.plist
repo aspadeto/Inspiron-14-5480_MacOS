@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>18G29g</string>
+	<string>19H15</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
 	<key>CFBundleExecutable</key>
@@ -25,7 +25,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.5.9</string>
+	<string>3.4.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -33,25 +33,27 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0259</string>
+	<string>0349</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>10E1001</string>
+	<string>12B45b</string>
+	<key>DTPlatformName</key>
+	<string>macosx</string>
 	<key>DTPlatformVersion</key>
-	<string>GM</string>
+	<string>11.0</string>
 	<key>DTSDKBuild</key>
-	<string>18E219</string>
+	<string>20A2408</string>
 	<key>DTSDKName</key>
-	<string>macosx10.14</string>
+	<string>macosx11.0</string>
 	<key>DTXcode</key>
-	<string>1020</string>
+	<string>1220</string>
 	<key>DTXcodeBuild</key>
-	<string>10E1001</string>
+	<string>12B45b</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.8</string>
+	<string>10.9</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -64,7 +66,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://headsoft.com.au/download/mac/appcast.xml</string>
+	<string>https://github.com/headkaze/Hackintool/releases/latest/download/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>Dscj0/VuPnW8QjlmbHewn803JDopcJfwlC+R4FMHU/U=</string>
 </dict>
