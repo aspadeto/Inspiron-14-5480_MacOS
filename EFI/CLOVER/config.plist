@@ -47,6 +47,8 @@
 			<dict>
 				<key>DeleteUnused</key>
 				<false/>
+				<key>FixAirport</key>
+				<true/>
 				<key>FixHPET</key>
 				<false/>
 				<key>FixIPIC</key>
@@ -182,6 +184,74 @@
 					oAqRCv8L//8=
 					</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>VoodooI2C - Find _CRS, Replace XCRS,Target Bridge TPD0</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					X0NSUw==
+					</data>
+					<key>Replace</key>
+					<data>
+					WENSUw==
+					</data>
+					<key>TgtBridge</key>
+					<data>
+					VFBEMA==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>VoodooI2C - Find _STA, Replace XSTA, Target Bridge GPI0</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					X1NUQQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WFNUQQ==
+					</data>
+					<key>TgtBridge</key>
+					<data>
+					R1BJMA==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>VoodooI2C - Find USTP, Replace XSTP</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					VVNUUAg=
+					</data>
+					<key>Replace</key>
+					<data>
+					WFNUUAg=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>VoodooI2C - Find _STA, Replace XSTA, Target Bridge I2C1 </string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					X1NUQQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WFNUQQ==
+					</data>
+					<key>TgtBridge</key>
+					<data>
+					STJDMQ==
+					</data>
+				</dict>
 			</array>
 			<key>ReuseFFFF</key>
 			<false/>
@@ -308,7 +378,7 @@
 				<string>Audio device</string>
 				<key>layout-id</key>
 				<data>
-				CwAAAA==
+				EAAAAA==
 				</data>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
@@ -400,7 +470,7 @@
 			<key>AddClockID</key>
 			<true/>
 			<key>FixOwnership</key>
-			<true/>
+			<false/>
 			<key>HighCurrent</key>
 			<false/>
 			<key>Inject</key>
@@ -416,7 +486,7 @@
 			<key>DoubleClick</key>
 			<integer>500</integer>
 			<key>Enabled</key>
-			<false/>
+			<true/>
 			<key>Speed</key>
 			<integer>8</integer>
 		</dict>
@@ -457,8 +527,6 @@
 		<key>KernelCpu</key>
 		<false/>
 		<key>KernelLapic</key>
-		<true/>
-		<key>KernelPm</key>
 		<true/>
 		<key>KernelToPatch</key>
 		<array>
@@ -547,7 +615,7 @@
 				<key>Comment</key>
 				<string>Prevent Apple I2C kexts from attaching to I2C controllers</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				U1U5TGFYUT0=
@@ -567,7 +635,7 @@
 				<key>Comment</key>
 				<string>Prevent Apple I2C kexts from attaching to I2C controllers</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				U1U5TGFYUT0=
@@ -845,6 +913,8 @@
 		<string></string>
 		<key>SmUUID</key>
 		<string>:</string>
+		<key>Trust</key>
+		<true/>
 		<key>Version</key>
 		<string>1.0</string>
 	</dict>
