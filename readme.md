@@ -18,7 +18,7 @@
     - Leitor de cartão;
     - Saída para fone de ouvido;
     - Webcam;
-    - BIOS versão: ~~2.2.0~~ 2.4.0 (Bios foi atualizada, isso exigiu a realização do patch DSDT novamente);
+    - BIOS versão: ~~2.2.0~~ ~~2.4.0~~ 2.8.0 (Bios foi atualizada, isso exigiu a realização do patch DSDT novamente);
     - Áudio Realtek ALC236;
     - Interface de Rede Sem Fio Intel Wireless AC9462;
     - Interface de Rede Ethernet Realtek RTL810xE FE;
@@ -27,11 +27,11 @@
     - SSD M.2 Nvme Crucial 500GB;
     - Dell DW1560 Broadcom BCM94352Z Rede sem fio + Bluetooth 4.0 comprada no Aliexpress.
   * Softwares
-    - Mac OS Mojave 10.14.5 - 6;
-    - Clover (v2.4k r4961, 2.5 5103);
+    - Mac OS Mojave 10.14.6 (inicialmente foi instalado no 10.14.5);
+    - Clover (v2.4k r4961, 2.5 5103, 5125);
     - Windows 10 64bits;
   * Upgrades futuros:
-    - Acrescentar um pente de memória de 8GB DDR4.
+    - Colocar 32 GB DDR4 de memória (2 * 16GB)
 
 ## 1.2 O que funciona?
 
@@ -58,26 +58,10 @@
 ## 1.3 Problemas ou incompatibilidades
   * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560.
   * Interface Gráfica Dedicada MX150 não é compatível.
-  * Leitor de cartão de memória não funciona.
+  * Leitor de cartão de memória não é compatível.
 
 ## 1.4 TODO (pendências)
   * syscl-USBFix: Quando o equipamento dorme as portas USB desligam e não voltam.
-  * verificar questão do voltageshift
-    * Undervolting with VoltageShift
-https://sitechprog.blogspot.com/2017/06/voltageshift.html
-https://github.com/sicreative/VoltageShift
-The two links have a pretty decent explanation of how to use it.
-Here is a brief explanation of how it works. VoltageShift writes these offsets to MSR. Meaning once the system shutdown completely you will lose these settings. That includes shutdown and hibernation but if you were to just restart and boot into Windows, these settings actually stay.
-Apparently it doesn't persist through sleep even though it says it does. Meaning you'll have to either run the intervals or run it manually when wake. A small script makes this super easy.
-When you build with their launch daemon tool, it builds a daemon which will set these offsets on boot and to the offsets in x time intervals to set them again if your laptop happened to hibernate or sleep.
-I've had success with these settings CPU -25mv, GPU -90mv, Cache -125mv
-./voltageshift offset -125 -90 -125
-Above is for manually setting them! Follow the instructions for building the launch daemon.
-My recommendation is to just set it manually for a week or so, once you know you are stable then build the launch daemon.
-Also you can change these settings on the fly if you have Windows installed with Intel XTU. Test for stability there then apply the same with VoltageShift.
-  * usar combojack ??
-  * CPUFirend ??
-  * LiluFriend?
 
 # 2. INSTALAÇÃO
 
@@ -149,7 +133,7 @@ https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManager
 
 Após tudo estar funcionando da forma correta o ideal é mover as kexts da pasta /EFI/Clover/kexts/Other para a pasta /Library/Extensions
 
-Para facilitar essa tarefa você pode utilizar a ferramenta Hackintool (https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/).
+Para facilitar essa tarefa você pode utilizar a ferramenta Hackintool (https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/), que além de ajudar na movimentação dos arquivos também oferece uma ferramenta para fazer rebuild do cache das kexts. 
 
 # 4. CONFIGURAÇÃO
 
@@ -218,13 +202,15 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
       Isso vai gerar os arquivos necessários na pasta EFI/CLOVER/ACPI/origin
 
   2. Tire uma cópia desses arquvos para outra pasta e selecione apenas os que iniciam com SSDT-\*.aml (SSDT-1.aml, por exemplo) e DSDT.aml, o restante pode ser descartado.
+      > cp /Volumes/EFI/EFI/CLOVER/ACPI/origin/DSDT.aml .
+      > cp /Volumes/EFI/EFI/CLOVER/ACPI/origin/SSDT-?.aml .
 
   3. Execute o comando a seguir para gerar os arquivos DSL necessários.
       > iasl -dl \*.aml
 
       Se aparecer "Disassembly completed" é porque deu certo.
 
-  1. Pronto, agora basta abrir (com o MaciASL) os arquivos DSL e realizar os patches necessários.
+  4. Pronto, agora basta abrir (com o MaciASL) os arquivos DSL e realizar os patches necessários.
 
 ### 4.2.2 Correções iniciais no DSDT
 
@@ -260,7 +246,8 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
       {
           CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
           Store (Zero, F0LN)
-      }```
+      }
+      ```
 
 
   2. Linhas com ZERO
@@ -295,7 +282,20 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
       end;
       ```
 
-  4. Compile, aplique e reinicie o computador
+  4. Aplique o patch no SSDT-9.dsl
+
+    Essa linha 
+      
+      ```
+      Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+      ```
+    deve ser substituída por essa
+
+      ```
+      Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Methd
+      ```
+
+  5. Compile, aplique e reinicie o computador
 
      1. Compilando
 
@@ -305,13 +305,36 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 
         Observe que o comando deve retornar "Compilation complete. 0 Errors".
 
-     1. Copie o arquivo resultante para a pasta EFI/CLOVER/ACPI/patched
+        Compile os outros arquivos.
 
-     2. Reinicie o equipamento
+        ```
+        iasl *.dsl
+        ```
+
+     2. Copie os arquivos resultantes (listagem abaixo) para a pasta EFI/CLOVER/ACPI/patched
+        * DSDT.aml
+        * SSDT-DisableDGPU.aml
+        * SSDT-DiscreteSpoof.aml
+        * SSDT-MCHC.aml
+        * SSDT-TPD0.aml
+        * SSDT-XOSI.aml
+        * SSDT-ALC283.aml
+        * SSDT-PNLFCFL.aml
+        * SSDT-UIAC.aml
+        * SSDT-BRT6.aml
+        * SSDT-GPI0.aml
+        * SSDT-RMDT.aml
+        * SSDT-USBX.aml
+
+        Eu prefiro copiar também os arquivos DSL correspondentes para a pasta patched mesmo que isso não interfira no resultado final para que quando houver uma atualização importante fique fácil de descobrir as diferenças e eu não precise baixar o código do repositório.
+
+     3. Reinicie o equipamento
 
 ### 4.2.3 Patches SSDT e suas finalidades
 
-  * **SSDT-DisableDGPU.aml**
+  * **SSDT-DisableDGPU.aml e SSDT-DiscreteSpoof.aml**
+
+    Ambos tentam fazer a mesma coisa, são duas extratégias diferentes de tentar desabilitar a interface gráfica dedicada.
 
     Não há necessidade de manter a interface gráfica dedicada ligada pois ela não funciona no MacOS, pra piorar ela fica gasta energia e ainda mantém a ventoinha funcionando, provocando barulho.
 
@@ -340,6 +363,9 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
   * **SSDT-USBX.aml** e **SSDT-UIAC.aml**
 
     Configura as portas USB do equipamento. É necessário a USBInjectAll.kext.
+
+  * **SSDT-GPI0.aml e SSDT-TPD0.aml**
+    Para o correto funcionamento do trackpad com o VoodooI2C.kext
 
 ## 4.3 CONFIGURAÇÕES CLOVER
 
