@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of ../origin-rom2/DSDT.aml, Sat Oct  5 10:19:54 2019
+ * Disassembly of ../origin/DSDT.aml, Mon Dec 14 23:27:33 2020
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00041F6A (270186)
+ *     Length           0x00041FD8 (270296)
  *     Revision         0x02
- *     Checksum         0x73
+ *     Checksum         0x56
  *     OEM ID           "DELL  "
  *     OEM Table ID     "CBX3   "
  *     OEM Revision     0x01072009 (17244169)
@@ -347,7 +347,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
     Name (TPCS, 0x1000)
     Name (TPMM, 0xFED40000)
     Name (FTPM, 0xFFFFFFFF)
-    Name (PPIM, 0x78849F18)
+    Name (PPIM, 0x787BBF18)
     Name (PPIL, 0x1C)
     Name (AMDT, Zero)
     Name (TPMF, Zero)
@@ -363,7 +363,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
     Name (TOPM, 0x00000000)
     Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
-    OperationRegion (GNVS, SystemMemory, 0x787FC000, 0x0866)
+    OperationRegion (GNVS, SystemMemory, 0x7876E000, 0x0866)
     Field (GNVS, AnyAcc, Lock, Preserve)
     {
         OSYS,   16, 
@@ -1484,7 +1484,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
         NVAF,   8
     }
 
-    OperationRegion (EXBU, SystemMemory, 0x7884A000, 0x0012)
+    OperationRegion (EXBU, SystemMemory, 0x787BC000, 0x0012)
     Field (EXBU, AnyAcc, Lock, Preserve)
     {
         DAT0,   8, 
@@ -1500,14 +1500,14 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
         CBID,   16
     }
 
-    OperationRegion (OGNV, SystemMemory, 0x78800000, 0x0002)
+    OperationRegion (OGNV, SystemMemory, 0x78772000, 0x0002)
     Field (OGNV, AnyAcc, Lock, Preserve)
     {
         ISSD,   8, 
         FSS0,   8
     }
 
-    OperationRegion (DEGA, SystemMemory, 0x78801000, 0x0018)
+    OperationRegion (DEGA, SystemMemory, 0x78773000, 0x0018)
     Field (DEGA, AnyAcc, Lock, Preserve)
     {
         DDDR,   8, 
@@ -1637,14 +1637,6 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                 0x001FFFFF, 
                 0x03, 
                 LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0017FFFF, 
-                Zero, 
-                LNKA, 
                 Zero
             }, 
 
@@ -1846,6 +1838,14 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                 Zero, 
                 LNKA, 
                 Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0017FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
             }
         })
         Name (AR00, Package (0x35)
@@ -2024,14 +2024,6 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                 0x02, 
                 Zero, 
                 0x22
-            }, 
-
-            Package (0x04)
-            {
-                0x0017FFFF, 
-                Zero, 
-                Zero, 
-                0x10
             }, 
 
             Package (0x04)
@@ -2269,6 +2261,14 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
             Package (0x04)
             {
                 0x0002FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x0017FFFF, 
                 Zero, 
                 Zero, 
                 0x10
@@ -4600,6 +4600,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                     CreateBitField (BUF0, \_SB.PCI0._Y0C._RW, ECRW)  // _RW_: Read-Write Status
                     Store (Zero, ECRW)
                 }
+                
                 If (PM0H)
                 {
                     CreateDWordField (BUF0, \_SB.PCI0._Y0D._LEN, F0LN)  // _LEN: Length
@@ -13161,7 +13162,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
         }
     }
 
-    Name (SNVB, 0x78802000)
+    Name (SNVB, 0x78774000)
     Name (SNVL, 0x0008)
     OperationRegion (SBNV, SystemMemory, SNVB, SNVL)
     Field (SBNV, AnyAcc, Lock, Preserve)
@@ -13563,7 +13564,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
         }
     }
 
-    Name (PNVB, 0x78849118)
+    Name (PNVB, 0x787BB118)
     Name (PNVL, 0x028F)
     OperationRegion (PNVA, SystemMemory, PNVB, PNVL)
     Field (PNVA, AnyAcc, Lock, Preserve)
@@ -18887,7 +18888,9 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
 
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
+                
                 Return (0x0F)
+
             }
         }
     }
@@ -44288,7 +44291,9 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
 
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
+                
                 Return (ConcatenateResTemplate (SBFB, SBFG))
+
             }
         }
 
@@ -54298,7 +54303,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
         }
     }
 
-    OperationRegion (ABNV, SystemMemory, 0x787D9000, 0x0016)
+    OperationRegion (ABNV, SystemMemory, 0x7874B000, 0x0016)
     Field (ABNV, AnyAcc, Lock, Preserve)
     {
         ABMA,   64, 
@@ -54857,10 +54862,10 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
     Scope (\)
     {
         Mutex (SMIX, 0x01)
-        Name (SMBA, 0x787E3000)
+        Name (SMBA, 0x78755000)
         Name (WMBS, 0x00008000)
         Name (PSMI, 0x000000B2)
-        Name (SDBA, 0x787DB000)
+        Name (SDBA, 0x7874D000)
         Name (SDBS, 0x00008000)
         Method (SNVC, 1, NotSerialized)
         {
@@ -55900,6 +55905,27 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                 }
             }
 
+            Method (BM08, 0, NotSerialized)
+            {
+                Store (DM05 (One, 0x30), Local0)
+                CreateDWordField (Local0, Zero, ENUB)
+                Store (ENUB, DS12)
+            }
+
+            Method (BM09, 0, NotSerialized)
+            {
+                Store (DM05 (One, 0x30), Local0)
+                CreateDWordField (Local0, 0x10, STRB)
+                Store (STRB, DS30)
+            }
+
+            Method (BM10, 0, NotSerialized)
+            {
+                Store (DM05 (One, 0x30), Local0)
+                CreateDWordField (Local0, 0x20, INTB)
+                Store (INTB, DS32)
+            }
+
             Method (_WDG, 0, NotSerialized)
             {
                 DB01 ()
@@ -56141,6 +56167,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
             {
                 Name (DS16, Package (0x14){})
                 Name (DS17, Ones)
+                BM09 ()
                 Multiply (Arg0, 0x08, Local0)
                 Add (DS30, Local0, Local0)
                 Store (DM01 (Local0), Local0)
@@ -56212,6 +56239,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
             {
                 Name (DS21, Package (0x14){})
                 Name (DS22, Ones)
+                BM10 ()
                 Multiply (Arg0, 0x08, Local0)
                 Add (DS32, Local0, Local0)
                 Store (DM01 (Local0), Local0)
@@ -56343,6 +56371,7 @@ DefinitionBlock ("", "DSDT", 2, "DELL  ", "CBX3   ", 0x01072009)
                     Return (Zero)
                 }
 
+                BM08 ()
                 Multiply (Arg0, 0x08, Local0)
                 Add (DS12, Local0, Local0)
                 Store (DM01 (Local0), Local0)
