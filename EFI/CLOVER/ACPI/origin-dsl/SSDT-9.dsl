@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of ../origin-rom2/SSDT-9.aml, Sat Oct  5 10:19:54 2019
+ * Disassembly of ../origin/SSDT-9.aml, Mon Dec 14 23:27:33 2020
  *
  * Original Table Header:
  *     Signature        "SSDT"
