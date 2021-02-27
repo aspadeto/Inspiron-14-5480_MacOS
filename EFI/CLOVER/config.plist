@@ -5,7 +5,7 @@
 	<key>ACPI</key>
 	<dict>
 		<key>AutoMerge</key>
-		<true/>
+		<false/>
 		<key>DSDT</key>
 		<dict>
 			<key>#DropOEM_DSM</key>
@@ -45,26 +45,28 @@
 			<false/>
 			<key>Fixes</key>
 			<dict>
+				<key>AddPNLF</key>
+				<false/>
 				<key>DeleteUnused</key>
 				<false/>
 				<key>FixAirport</key>
-				<true/>
+				<false/>
 				<key>FixHPET</key>
-				<false/>
+				<true/>
 				<key>FixIPIC</key>
-				<false/>
+				<true/>
 				<key>FixMutex</key>
 				<true/>
 				<key>FixRTC</key>
 				<true/>
 				<key>FixRegions</key>
-				<false/>
-				<key>FixSBUS</key>
 				<true/>
+				<key>FixSBUS</key>
+				<false/>
 				<key>FixShutdown</key>
-				<false/>
+				<true/>
 				<key>FixTMR</key>
-				<false/>
+				<true/>
 				<key>FixUSB</key>
 				<false/>
 			</dict>
@@ -90,7 +92,7 @@
 					<key>Comment</key>
 					<string>HDAS to HDEF</string>
 					<key>Disabled</key>
-					<false/>
+					<true/>
 					<key>Find</key>
 					<data>
 					SERBUw==
@@ -238,7 +240,7 @@
 					<key>Comment</key>
 					<string>VoodooI2C - Find _STA, Replace XSTA, Target Bridge I2C1 </string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>
 					X1NUQQ==
@@ -258,23 +260,10 @@
 		</dict>
 		<key>DisableASPM</key>
 		<false/>
-		<key>DropTables</key>
-		<array>
-			<dict>
-				<key>Signature</key>
-				<string>DMAR</string>
-			</dict>
-			<dict>
-				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>xh_rvp10</string>
-			</dict>
-		</array>
 		<key>FixHeaders</key>
-		<true/>
+		<false/>
 		<key>FixMCFG</key>
-		<true/>
+		<false/>
 		<key>HaltEnabler</key>
 		<true/>
 		<key>PatchAPIC</key>
@@ -316,14 +305,14 @@
 				<key>APSN</key>
 				<false/>
 				<key>CStates</key>
-				<true/>
+				<false/>
 				<key>PStates</key>
-				<true/>
+				<false/>
 				<key>PluginType</key>
 				<true/>
 			</dict>
 			<key>NoDynamicExtract</key>
-			<true/>
+			<false/>
 			<key>NoOemTableId</key>
 			<false/>
 		</dict>
@@ -331,7 +320,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 debug=0x100 agdpmod=vit9696 nv_disable=1</string>
+		<string>dart=0 debug=0x100 -no_compat_check agdpmod=vit9696 -igfxblr</string>
 		<key>CustomLogo</key>
 		<false/>
 		<key>Debug</key>
@@ -357,14 +346,12 @@
 		<dict>
 			<key>Inject</key>
 			<string>No</string>
-			<key>ResetHDA</key>
-			<false/>
 		</dict>
 		<key>LANInjection</key>
 		<false/>
 		<key>Properties</key>
 		<dict>
-			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
+			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
 				<key>#model</key>
 				<string>Cannon Point-LP High Definition Audio Controller</string>
@@ -392,10 +379,10 @@
 				CQClPg==
 				</data>
 				<key>AAPL,slot-name</key>
-				<string>Internal</string>
+				<string>Internal@0,2,0</string>
 				<key>device-id</key>
 				<data>
-				mz4AAA==
+				pT4AAA==
 				</data>
 				<key>device_type</key>
 				<string>VGA compatible controller</string>
@@ -411,21 +398,25 @@
 				<data>
 				AwAAAA==
 				</data>
-				<key>framebuffer-con1-alldata</key>
+				<key>framebuffer-con1-busid</key>
 				<data>
-				AQEJAAAIAADHAQAA
+				AQAAAA==
 				</data>
 				<key>framebuffer-con1-enable</key>
 				<data>
 				AQAAAA==
 				</data>
-				<key>framebuffer-con2-alldata</key>
+				<key>framebuffer-con1-type</key>
 				<data>
-				AgYKAAAEAADHAQAA
+				AAgAAA==
 				</data>
 				<key>framebuffer-con2-enable</key>
 				<data>
 				AQAAAA==
+				</data>
+				<key>framebuffer-con2-type</key>
+				<data>
+				AAQAAA==
 				</data>
 				<key>framebuffer-fbmem</key>
 				<data>
@@ -480,7 +471,14 @@
 	<key>GUI</key>
 	<dict>
 		<key>EmbeddedThemeType</key>
-		<string>Daytime</string>
+		<string>Dark</string>
+		<key>Hide</key>
+		<array>
+			<string>Preboot</string>
+			<string>Recovery</string>
+		</array>
+		<key>KbdPrevLang</key>
+		<true/>
 		<key>Mouse</key>
 		<dict>
 			<key>DoubleClick</key>
@@ -499,8 +497,10 @@
 			<key>Linux</key>
 			<false/>
 			<key>Tool</key>
-			<false/>
+			<true/>
 		</dict>
+		<key>ShowOptimus</key>
+		<true/>
 		<key>Theme</key>
 		<string>Mojave</string>
 		<key>Timezone</key>
@@ -508,6 +508,11 @@
 	</dict>
 	<key>Graphics</key>
 	<dict>
+		<key>EDID</key>
+		<dict>
+			<key>Inject</key>
+			<false/>
+		</dict>
 		<key>Inject</key>
 		<dict>
 			<key>Intel</key>
@@ -615,7 +620,7 @@
 				<key>Comment</key>
 				<string>Prevent Apple I2C kexts from attaching to I2C controllers</string>
 				<key>Disabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				U1U5TGFYUT0=
@@ -635,7 +640,7 @@
 				<key>Comment</key>
 				<string>Prevent Apple I2C kexts from attaching to I2C controllers</string>
 				<key>Disabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				U1U5TGFYUT0=
@@ -865,13 +870,13 @@
 	<key>SMBIOS</key>
 	<dict>
 		<key>BiosReleaseDate</key>
-		<string>12/19/2018</string>
+		<string>01/06/2021</string>
 		<key>BiosVendor</key>
 		<string>Apple Inc.</string>
 		<key>BiosVersion</key>
-		<string>MBP141.88Z.F000.B00.1812191142</string>
+		<string>MBP152.88Z.F000.B00.2101062036</string>
 		<key>Board-ID</key>
-		<string>Mac-B4831CEBD52A0C4C</string>
+		<string>Mac-827FB448E656EC26</string>
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardSerialNumber</key>
@@ -879,36 +884,31 @@
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>BoardVersion</key>
-		<string>1.0</string>
+		<string>MacBookPro15,2</string>
 		<key>ChassisAssetTag</key>
-		<string>MacBook-Aluminum</string>
+		<string>Asset Tag#</string>
 		<key>ChassisManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>ChassisType</key>
-		<string>0x09</string>
+		<string>0x9</string>
 		<key>EfiVersion</key>
-		<string>186.0.0.0.0</string>
+		<string>1554.80.3.0.0</string>
 		<key>Family</key>
 		<string>MacBook Pro</string>
 		<key>FirmwareFeatures</key>
-		<string>0xFC0FE137</string>
+		<string>0xFD8FF426</string>
 		<key>FirmwareFeaturesMask</key>
-		<string>0xFF1FFF3F</string>
+		<string>0xFF9FFF3F</string>
 		<key>LocationInChassis</key>
 		<string>Part Component</string>
 		<key>Manufacturer</key>
 		<string>Apple Inc.</string>
-		<key>Memory</key>
-		<dict>
-			<key>Channels</key>
-			<integer>0</integer>
-		</dict>
 		<key>Mobile</key>
 		<true/>
 		<key>PlatformFeature</key>
-		<string>0x1A</string>
+		<string>0x32</string>
 		<key>ProductName</key>
-		<string>MacBookPro15,1</string>
+		<string>MacBookPro15,2</string>
 		<key>SerialNumber</key>
 		<string></string>
 		<key>SmUUID</key>
