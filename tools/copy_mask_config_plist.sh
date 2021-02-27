@@ -10,7 +10,7 @@ cp /Volumes/EFI/EFI/CLOVER/config.plist .
 pledit=/usr/libexec/PlistBuddy
 maskedVal=""
 
-echo -e "Masking your System IDs"
+echo "Masking your System IDs"
 $pledit -c "Set SMBIOS:SerialNumber $maskedVal" config.plist &>/dev/null
 $pledit -c "Set SMBIOS:BoardSerialNumber $maskedVal" config.plist &>/dev/null
 $pledit -c "Set SMBIOS:SmUUID $maskedVal": config.plist &>/dev/null
