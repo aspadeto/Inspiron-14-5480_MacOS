@@ -4,7 +4,7 @@
 
   O repositório https://github.com/aspadeto/Inspiron-14-5480_MacOS traz todo conteúdo utilizado nesse guia e maiores detalhes sobre a configuração.
 
-  Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (2019) no mercado brasileiro e tem um ótimo custo/benefício.
+  Comprei esse equipamento especificamente para utilizar como hackintosh, ele está disponível atualmente (em 2019) no mercado brasileiro e tem um ótimo custo/benefício.
 
   Como o resultado da instalação do Mojave foi muito satisfatório compartilho aqui as configurações aplicadas no equipamento.
 
@@ -26,12 +26,13 @@
   * Extras (adicionados posteriormente)
     - SSD M.2 Nvme Crucial 500GB;
     - Dell DW1560 Broadcom BCM94352Z Rede sem fio + Bluetooth 4.0 comprada no Aliexpress.
+    - 16GB Crucial DDR4 2666 (funcionando em 2400), totalizando 24GB de RAM.
   * Softwares
     - Mac OS Mojave 10.14.6 (inicialmente foi instalado no 10.14.5);
-    - Clover (v2.4k r4961, 2.5 5103, 5125);
+    - Clover (v2.4k r4961, 2.5 5103, 5122);
     - Windows 10 64bits;
-  * Upgrades futuros:
-    - Colocar 32 GB DDR4 de memória (2 * 16GB)
+
+[Sobre este Macbook](https://github.com/aspadeto/Inspiron-14-5480_MacOS/blob/master/imgs/about-this-mac.png?raw=true)
 
 ## 1.2 O que funciona?
 
@@ -59,9 +60,6 @@
   * ~~Interface de Rede Wifi da interface Intel AC9462 não compatível, o bluetooth é identificado, mas ainda não funcionou.~~. Interface foi substituída pela DW1560.
   * Interface Gráfica Dedicada MX150 não é compatível.
   * Leitor de cartão de memória não é compatível.
-
-## 1.4 TODO (pendências)
-  * syscl-USBFix: Quando o equipamento dorme as portas USB desligam e não voltam.
 
 # 2. INSTALAÇÃO
 
@@ -125,15 +123,13 @@ No Clover Configurator vá em SMBIOS gere os dados dessa aba, use a caixa de sel
 
 ## 3.4 Aplicando Temas ao Clover
 
-Baixe o CloverThemeManager e modifique o tema do bootloader.
-
-https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManagerApp/Updates/
+https://github.com/CloverHackyColor/CloverThemes
 
 ## 3.5 Cópia dos Kexts para a pasta /Library/Extensions
 
 Após tudo estar funcionando da forma correta o ideal é mover as kexts da pasta /EFI/Clover/kexts/Other para a pasta /Library/Extensions
 
-Para facilitar essa tarefa você pode utilizar a ferramenta Hackintool (https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/), que além de ajudar na movimentação dos arquivos também oferece uma ferramenta para fazer rebuild do cache das kexts. 
+Para facilitar essa tarefa você pode utilizar a ferramenta Hackintool (https://www.tonymacx86.com/threads/release-hackintool-v2-7-1.254559/), que além de ajudar na movimentação dos arquivos também oferece uma ferramenta para fazer rebuild do cache das kexts.
 
 # 4. CONFIGURAÇÃO
 
@@ -198,7 +194,7 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 ### 4.2.1 Passos iniciais
 
   1. Iniciar o equipamento, na tela do Clover apertar F4 (talvez seja necessário apertar Fn + F4)
-  
+
       Isso vai gerar os arquivos necessários na pasta EFI/CLOVER/ACPI/origin
 
   2. Tire uma cópia desses arquvos para outra pasta e selecione apenas os que iniciam com SSDT-\*.aml (SSDT-1.aml, por exemplo) e DSDT.aml, o restante pode ser descartado.
@@ -284,8 +280,8 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 
   4. Aplique o patch no SSDT-9.dsl
 
-    Essa linha 
-      
+    Essa linha
+
       ```
       Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
       ```
@@ -369,96 +365,62 @@ Essa parte está aqui apenas para referência, todos estas configurações já e
 
 ## 4.3 CONFIGURAÇÕES CLOVER
 
-O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config, mas foram feitas várias alterações por conta da utilização do Lilu e WhateverGreen.
+O arquivo config.plist utilizado tem como base o arquivo **config_HD615_620_630_640_650.plist** do repositório https://github.com/RehabMan/OS-X-Clover-Laptop-Config, mas muitas atualizações já foram feitas.
 
 Entre várias configurações, destaco as seguintes.
 
 ### 4.3.1 Configuração da Interface Gráfica Integrada Intel UHD 620
 
   ```
-  <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
-  <dict>
-    <key>AAPL,GfxYTile</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>AAPL,ig-platform-id</key>
-    <data>
-    CQClPg==
-    </data>
-    <key>AAPL,slot-name</key>
-    <string>Internal</string>
-    <key>device-id</key>
-    <data>
-    mz4AAA==
-    </data>
-    <key>device_type</key>
-    <string>VGA compatible controller</string>
-    <key>disable-external-gpu</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>enable-hdmi20</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>framebuffer-camellia</key>
-    <data>
-    AwAAAA==
-    </data>
-    <key>framebuffer-con1-alldata</key>
-    <data>
-    AQEJAAAIAADHAQAA
-    </data>
-    <key>framebuffer-con1-enable</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>framebuffer-con2-alldata</key>
-    <data>
-    AgYKAAAEAADHAQAA
-    </data>
-    <key>framebuffer-con2-enable</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>framebuffer-fbmem</key>
-    <data>
-    AAAAAA==
-    </data>
-    <key>framebuffer-memorycount</key>
-    <data>
-    AwAAAA==
-    </data>
-    <key>framebuffer-mobile</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>framebuffer-patch-enable</key>
-    <data>
-    AQAAAA==
-    </data>
-    <key>framebuffer-pipecount</key>
-    <data>
-    AwAAAA==
-    </data>
-    <key>framebuffer-portcount</key>
-    <data>
-    AwAAAA==
-    </data>
-    <key>framebuffer-stolenmem</key>
-    <data>
-    AACQAw==
-    </data>
-    <key>framebuffer-unifiedmem</key>
-    <data>
-    AAAAYA==
-    </data>
-    <key>hda-gfx</key>
-    <string>onboard-1</string>
-    <key>model</key>
-    <string>UHD Graphics 620 (Whiskey Lake)</string>
-  </dict>
+        <key>PciRoot(0x0)/Pci(0x2,0x0)</key>
+  			<dict>
+  				<key>framebuffer-unifiedmem</key>
+  				<data>AAAAYA==</data>
+  				<key>framebuffer-con1-type</key>
+  				<data>AAgAAA==</data>
+  				<key>framebuffer-stolenmem</key>
+  				<data>AACQAw==</data>
+  				<key>framebuffer-camellia</key>
+  				<data>AwAAAA==</data>
+  				<key>framebuffer-memorycount</key>
+  				<data>AwAAAA==</data>
+  				<key>enable-hdmi20</key>
+  				<data>AQAAAA==</data>
+  				<key>hda-gfx</key>
+  				<string>onboard-1</string>
+  				<key>framebuffer-mobile</key>
+  				<data>AQAAAA==</data>
+  				<key>framebuffer-con1-enable</key>
+  				<data>AQAAAA==</data>
+  				<key>device-id</key>
+  				<data>pT4AAA==</data>
+  				<key>framebuffer-con2-enable</key>
+  				<data>AQAAAA==</data>
+  				<key>AAPL,GfxYTile</key>
+  				<data>AQAAAA==</data>
+  				<key>framebuffer-pipecount</key>
+  				<data>AwAAAA==</data>
+  				<key>framebuffer-con2-type</key>
+  				<data>AAQAAA==</data>
+  				<key>model</key>
+  				<string>UHD Graphics 620 (Whiskey Lake)</string>
+  				<key>framebuffer-fbmem</key>
+  				<data>AAAAAA==</data>
+  				<key>AAPL,ig-platform-id</key>
+  				<data>CQClPg==</data>
+  				<key>framebuffer-portcount</key>
+  				<data>AwAAAA==</data>
+  				<key>AAPL,slot-name</key>
+  				<string>Internal@0,2,0</string>
+  				<key>device_type</key>
+  				<string>VGA compatible controller</string>
+  				<key>framebuffer-con1-busid</key>
+  				<data>AQAAAA==</data>
+  				<key>disable-external-gpu</key>
+  				<data>AQAAAA==</data>
+  				<key>framebuffer-patch-enable</key>
+  				<data>AQAAAA==</data>
+  			</dict>
   ```
 
   Para verificar como configurar os conectores da interface de vídeo veja o guia Acer Swift 5 SF514-53t whiskey lake MacOS10.14.5 na referências.
@@ -467,51 +429,81 @@ Entre várias configurações, destaco as seguintes.
 ### 4.3.2 Configuração do Áudio
 
   ```
-  <key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
+  <key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
   <dict>
+    <key>device-id</key>
+    <data>cKEAAA==</data>
     <key>#model</key>
     <string>Cannon Point-LP High Definition Audio Controller</string>
+    <key>layout-id</key>
+    <data>EAAAAA==</data>
     <key>AAPL,slot-name</key>
     <string>Internal</string>
-    <key>device-id</key>
-    <data>
-    cKEAAA==
-    </data>
     <key>device_type</key>
     <string>Audio device</string>
-    <key>layout-id</key>
-    <data>
-    CwAAAA==
-    </data>
   </dict>
   ```
 
   Veja mais aqui: https://github.com/acidanthera/AppleALC/wiki/Supported-codecs
+
 
 ### 4.3.4 Boot Arguments
 
   * dart = 0, detabilita o VT-d apenas para o MacOS caso queira deixar a opção habilitada na BIOS
   * debug=0x100, evita que o sistema reboot em caso de kernel panic
   * agdpmod=vit9696 disables check for board-id
+  * -igfxblr para o brilho da tela funcionar após o reboot.
+  * ver commits no arquivo config.plist
 
-# 5. TESTES
+### 4.3.5 Outras configurações
 
-## 5.1 Verificar se o powermanagement está funcionando?
+  * config.plist/ACPI/SSDT/Generate/PluginType = marcado: Power Management (veja o resultado no utilitário Intel Power Gadget)
+    https://www.tonymacx86.com/threads/macos-native-cpu-igpu-power-management.222982/
+
+  * Muitas informações estão disponíveis aqui: https://sourceforge.net/p/cloverefiboot/wiki/Configuration/
+
+### 4.4. Configuração para iCloud, Facetime e App Store
+
+  https://www.tonymacx86.com/threads/how-to-fix-imessage.110471/
+
+# 5. FERRAMENTAS UTILIZADAS
+
+  * GenI2C
+    Configuração do trackpad https://github.com/williambj1/GenI2C
+
+  * Intel Power Gadgets
+    https://software.intel.com/en-us/articles/intel-power-gadget
+
+  * Clover Configurator
+    https://www.tonymacx86.com/resources/clover-configurator.467/
+
+  * Hackintool
+    Canivete suíço do hackintosh
+    https://github.com/headkaze/Hackintool
+
+  * iMessageDebug
+    https://www.tonymacx86.com/threads/how-to-fix-imessage.110471/
+
+  * CloverThemeManager
+    https://sourceforge.net/p/cloverefiboot/themes/ci/master/tree/CloverThemeManagerApp/Updates/
+
+# 6. TESTES
+
+## 6.1 Power management
+
+[Intel Power Gadget](https://github.com/aspadeto/Inspiron-14-5480_MacOS/blob/master/imgs/intel-power-gadget.png?raw=true)
 
 Ver os seguintes artigos.
 
   https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/
 
-  https://software.intel.com/en-us/articles/intel-power-gadget
+## 6.2 Resultados dos testes de performance
 
-## 5.2 Geekbench 4
-  * Geekbench 4 CPU
-    - Single-Core Score: 4670
-    - Multi-Core Score: 12512
-  * Geekbench 4 Computer:
-    - Results: 25669
+[Geekbench 4](https://github.com/aspadeto/Inspiron-14-5480_MacOS/blob/master/imgs/geekbench4-mojave.png?raw=true)
 
-# 6. REFERÊNCIAS
+[Geekbench 5](https://github.com/aspadeto/Inspiron-14-5480_MacOS/blob/master/imgs/geekbench5-mojave.png?raw=true)
+
+# 7. REFERÊNCIAS
 
 * Configurações parecidas
   * https://www.tonymacx86.com/threads/guide-dell-xps-9350-mojave-virtualsmc-i2c-trackpad-clover-uefi-hotpatch.267161/
