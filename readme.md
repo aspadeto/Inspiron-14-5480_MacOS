@@ -455,7 +455,25 @@ Entre várias configurações, destaco as seguintes.
   * -igfxblr para o brilho da tela funcionar após o reboot.
   * ver commits no arquivo config.plist
 
-### 4.3.5 Outras configurações
+### 4.3.5 CsrActiveConfig
+
+Fonte: https://www.elitemacx86.com/threads/guide-how-to-disable-sip-system-integrity-protection.260/
+
+CsrActiveConfig values and their functions:
+
+CsrActiveConfig=0x0​
+SIP is fully enabled​
+​
+CsrActiveConfig=0x3​
+SIP is partially disabled​
+​
+CsrActiveConfig=0x67​
+SIP is fully disabled​
+
+There are several other like 0x3E7 which eventually disables more protections than 0x67 but it’s not a good idea to disable all those protection measures which make macOS more vulnerable.
+
+
+### 4.3.6 Outras configurações
 
   * config.plist/ACPI/SSDT/Generate/PluginType = marcado: Power Management (veja o resultado no utilitário Intel Power Gadget)
     https://www.tonymacx86.com/threads/macos-native-cpu-igpu-power-management.222982/
